@@ -5,7 +5,9 @@ import React from 'react';
 export default (props) => (
     <div>
         <h3>Car name: {props.name}</h3>
-        <span>Year: <strong>{props.year}</strong></span>
+        <p>Year: <strong>{props.year}</strong></p>
+        {/*onChangeTitle - we ourselves came up with the name and pass to App   */}
+        <button onClick={props.onChangeTitle}>Click</button>
     </div>
 );
 
