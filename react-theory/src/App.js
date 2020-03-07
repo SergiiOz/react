@@ -15,12 +15,12 @@ class App extends Component {
     ],
 
     pageTitle: "React components",
+    showCars: false,
   }
 
+  // if we clicked button changed title
   changeTitleHandler = (newTitle) => {
 
-
-    // if we clicked button changed title
     //.setState it's extends from Component
     this.setState({
       pageTitle: newTitle
@@ -37,6 +37,12 @@ class App extends Component {
     })
   }
 
+  changeShowCarsHandler = () => {
+    this.setState({
+      showCars: !this.state.showCars
+    })
+  }
+
 
   render() {
     // const cars = this.state.cars;
@@ -45,7 +51,23 @@ class App extends Component {
       'color': 'red',
     }
 
+    let ourCars = null;
 
+    if (this.state.showCars === true) {
+      ourCars = this.state.cars.map((car, index) => {
+        return (
+          < Car
+            key={index}
+            name={car.name}
+            year={car.year}
+            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+          />
+        )
+      })
+    }
+
+
+    // this is JSX
     return (
       <div className="App" style={{ fontStyle: 'italic', fontSize: '30px' }}>
 
@@ -54,23 +76,35 @@ class App extends Component {
           {this.state.pageTitle}
         </h1>
 
+        {/* toggler show cars */}
+        <button onClick={this.changeShowCarsHandler}>Toggler Show Cars</button>
+        <br />
+
         {/* input field - we will change title */}
-        <input type="text" onChange={this.handleInput} />
+        <input type="text" placeholder="change title" onChange={this.handleInput} />
         <br />
 
         <button onClick={this.changeTitleHandler.bind(this, ' changed')}>Change Title!</button>
 
+        {/* our array */}
+        {ourCars}
+
         {/* use array */}
-        {this.state.cars.map((car, index) => {
-          return (
-            < Car
-              key={index}
-              name={car.name}
-              year={car.year}
-              onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
-            />
-          )
-        })}
+        {/* {
+          // use if (this.state.showCars === true){ show our array} else {null}
+          this.state.showCars
+            ? this.state.cars.map((car, index) => {
+              return (
+                < Car
+                  key={index}
+                  name={car.name}
+                  year={car.year}
+                  onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                />
+              )
+            })
+            : null
+        } */}
 
         {/* this is props.name props.year */}
         {/* <Car
