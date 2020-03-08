@@ -60,6 +60,17 @@ class App extends Component {
     })
   }
 
+  deleteCar(index) {
+    //create the clone array cars
+    const cars = this.state.cars.concat();
+    //delete car
+    cars.splice(index, 1);
+    //change our array in state
+    this.setState({
+      cars: cars
+    })
+  }
+
 
   render() {
     // const cars = this.state.cars;
@@ -80,6 +91,7 @@ class App extends Component {
             //we pass event - event.target.value from input, and pass index
             onChangeName={(event) => this.onChangeName(event.target.value, index)}
             onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+            onDelete={this.deleteCar.bind(this, index)}
           />
         )
       })

@@ -11,7 +11,10 @@ export default (props) => (
         <br />
 
         {/*onChangeTitle - we ourselves came up with the name and pass to App   */}
-        <button onClick={props.onChangeTitle}>Click (change title to name car)</button>
+        <button onClick={props.onChangeTitle}>Click (change title Page to car name)</button>
+        <br />
+
+        <button onClick={props.onDelete}>Delete Car</button>
     </div>
 );
 
