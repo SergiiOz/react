@@ -1,4 +1,11 @@
 .App {
   text-align: center;
   text-transform: uppercase;
+  padding: 0 10px;
+}
+
+.card-car {
+  padding: 10px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
 }

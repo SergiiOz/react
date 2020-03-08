@@ -3,11 +3,15 @@ import React from 'react';
 // <Car > <p>item</p><Car/>
 
 export default (props) => (
-    <div>
+    <div className="card-car">
         <h3>Car name: {props.name}</h3>
         <p>Year: <strong>{props.year}</strong></p>
+        {/* change name car */}
+        <input type="text" placeholder="change name car" onChange={props.onChangeName} />
+        <br />
+
         {/*onChangeTitle - we ourselves came up with the name and pass to App   */}
-        <button onClick={props.onChangeTitle}>Click</button>
+        <button onClick={props.onChangeTitle}>Click (change title to name car)</button>
     </div>
 );
 

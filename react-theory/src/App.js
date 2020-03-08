@@ -27,6 +27,7 @@ class App extends Component {
     })
   }
 
+  // change pageTitle
   handleInput = (event) => {
     // event - native event js
     // target - object of input
@@ -40,6 +41,22 @@ class App extends Component {
   changeShowCarsHandler = () => {
     this.setState({
       showCars: !this.state.showCars
+    })
+  }
+
+  // change name car
+  onChangeName(name, index) {
+    // find car
+    const car = this.state.cars[index];
+    //change name
+    car.name = name;
+    //we can't change current state 
+    //create the clone array cars
+    const cars = [...this.state.cars];
+    cars[index] = car;
+    //change our array in state
+    this.setState({
+      cars: cars,
     })
   }
 
@@ -60,6 +77,8 @@ class App extends Component {
             key={index}
             name={car.name}
             year={car.year}
+            //we pass event - event.target.value from input, and pass index
+            onChangeName={(event) => this.onChangeName(event.target.value, index)}
             onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
           />
         )
