@@ -90,7 +90,7 @@ class App extends Component {
             year={car.year}
             //we pass event - event.target.value from input, and pass index
             onChangeName={(event) => this.onChangeName(event.target.value, index)}
-            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+            onChangeTitle={this.changeTitleHandler.bind(this, car.name)} //() => this.changeTitleHandler(car.name)
             onDelete={this.deleteCar.bind(this, index)}
           />
         )
@@ -108,17 +108,25 @@ class App extends Component {
         </h1>
 
         {/* toggler show cars */}
-        <button onClick={this.changeShowCarsHandler}>Toggler Show Cars</button>
+        <button onClick={this.changeShowCarsHandler}>Show Cars Toggler</button>
         <br />
 
         {/* input field - we will change title */}
-        <input type="text" placeholder="change title" onChange={this.handleInput} />
+        <input type="text" placeholder="change page title" onChange={this.handleInput} />
         <br />
 
-        <button onClick={this.changeTitleHandler.bind(this, ' changed')}>Change Title!</button>
+        <button onClick={this.changeTitleHandler.bind(this, ' changed')}>Change page Title to the word "changed"!</button>
 
         {/* our array */}
-        {ourCars}
+        <div style={{
+          maxWidth: 700,
+          margin: 'auto',
+          marginTop: '20px'
+
+        }}>
+
+          {ourCars}
+        </div>
 
         {/* use array */}
         {/* {
