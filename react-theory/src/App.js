@@ -104,7 +104,9 @@ class App extends Component {
 
         <h1 style={divStyle}>
           {/* page title */}
-          {this.state.pageTitle}
+          {/* {this.state.pageTitle} */}
+          {/* if I want to pass the title in index.js (props in App didn't declare) */}
+          {this.props.title}
         </h1>
 
         {/* toggler show cars */}
