@@ -1,14 +1,16 @@
 import React from 'react';
+//radium for inline style
+import Radium from 'radium';
 import './Car.css';
 
 // props.childern this is 'item'
 // <Car > <p>item</p><Car/>
 
-export default (props) => {
+const Car = (props) => {
     //create array to input c-car (dynamic class)
     const inputClasses = ['c-car__input'];
 
-    //if input isn't empty - border green
+    //if input isn't empty - border green or red or bold
     if (props.name !== '') {
         inputClasses.push('c-car__input--green');
     } else {
@@ -18,9 +20,21 @@ export default (props) => {
     if (props.name.length > 4) {
         inputClasses.push('c-car__input--bold')
     }
+
+    const style = {
+        border: '2px solid #ccc',
+        boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .14)',
+        //work with inline style - with packet Radium
+        ':hover': {
+            border: '1px solid #aaa',
+            boxShadow: '0 4px 15px 0 rgba(0, 0, 0 , .25)'
+        }
+    }
+
+
     //this JSX
     return (
-        <div className="c-car"
+        <div className="c-car" style={style}
         // //inline style
         // style={{
         //     padding: '10px',
@@ -52,6 +66,9 @@ export default (props) => {
         </div>
     );
 }
+
+//for work with Radium we need wrap the component Car
+export default Radium(Car);
 
 // version create component
 //version 1
