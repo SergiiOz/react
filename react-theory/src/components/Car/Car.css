@@ -1,0 +1,36 @@
+.c-car {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: border, box-shadow 0.3s;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+}
+
+.c-car:hover {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.c-car__input {
+  padding: 5px;
+}
+
+.c-car__input:active {
+  outline: none;
+}
+
+.c-car__input--green {
+  border: 1px solid lightgreen;
+}
+
+.c-car__input--red {
+  border: 1px solid red;
+}
+
+.c-car__input--bold {
+  border: 2px solid green;
+  font-weight: bold;
+  color: blue;
+}
