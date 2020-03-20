@@ -2,11 +2,22 @@ import React from "react";
 //radium for inline style
 // import Radium from 'radium';
 import "./Car.css";
+//packet for falidation types
+import PropTypes from "prop-types";
+
 import withClass from "../hoc/withClass";
 
 // props.childern this is 'item'
 // <Car > <p>item</p><Car/>
+
 class Car extends React.Component {
+  componentDidMount() {
+    //focus on the second element with index 1
+    if (this.props.index === 1) {
+      this.inputRef.focus();
+    }
+  }
+
   render() {
     console.log("Car render");
 
@@ -38,6 +49,9 @@ class Car extends React.Component {
         </p>
         {/* change name car */}
         <input
+          /* add the new atribute doesn't show in HTML  */
+          // we can triggering 'focus' on input in DOM
+          ref={inputRef => (this.inputRef = inputRef)}
           type="text"
           placeholder="change name car"
           onChange={this.props.onChangeName}
@@ -60,6 +74,18 @@ class Car extends React.Component {
     );
   }
 }
+
+//validations types
+Car.propTypes = {
+  //we write what we expect (type), wrong show in console
+  name: PropTypes.string,
+  index: PropTypes.number,
+  year: PropTypes.number,
+  onChangeName: PropTypes.func,
+  onChangeTitle: PropTypes.func,
+  onDelete: PropTypes.func
+};
+
 //wrapp our component with hoc component
 export default withClass(Car, "c-car");
 

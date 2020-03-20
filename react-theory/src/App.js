@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import "./App.css";
 import Car from "./components/Car/Car";
 // import { render } from 'react-dom';
 import Counter from "./components/Counter/Counter";
 
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+
+//for create context and change clickedCounter2
+export const ClickedContext = React.createContext(false);
 
 class App extends Component {
   //initialize state with constructor
@@ -17,7 +20,7 @@ class App extends Component {
         { name: "Audi", year: 2017 },
         { name: "Mazda 3", year: 2010 }
       ],
-
+      clickedCounter2: false,
       pageTitle: "React components",
       showCars: false
     };
@@ -111,6 +114,7 @@ class App extends Component {
           //error boundary wrap Car ('key' перенесли так как ErrorBoundary корневой)
           <ErrorBoundary key={index}>
             <Car
+              index={index}
               name={car.name}
               year={car.year}
               //we pass event - event.target.value from input, and pass index
@@ -151,7 +155,18 @@ class App extends Component {
           Change page Title to the word "changed"!
         </button>
 
-        <Counter />
+        {/* wrap component counter to ClickedContext, for pass properti */}
+        <ClickedContext.Provider value={this.state.clickedCounter2}>
+          <Counter />
+        </ClickedContext.Provider>
+        {/* <Counter clickedCounter2={this.state.clickedCounter2} /> */}
+        <br />
+
+        {/* change clickedCounter2 from false to true, 
+        and pass property to component 'counter2' throw counter */}
+        <button onClick={() => this.setState({ clickedCounter2: true })}>
+          Change Counter2
+        </button>
 
         {/* our array */}
         <div
