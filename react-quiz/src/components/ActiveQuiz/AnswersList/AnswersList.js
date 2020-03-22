@@ -9,7 +9,13 @@ const AnswersList = props => {
     <ul className={classes.AnswersList}>
       {props.answers.map((answer, index) => {
         // answer first - parametr from AnswerItem, {answer} - iterator
-        return <AnswerItem key={index} answer={answer} />;
+        return (
+          <AnswerItem
+            key={index}
+            answer={answer}
+            onAnswerClick={props.onAnswerClick}
+          />
+        );
       })}
     </ul>
   );

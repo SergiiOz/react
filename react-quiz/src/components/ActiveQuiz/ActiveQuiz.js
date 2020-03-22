@@ -8,12 +8,17 @@ const ActiveQuiz = props => {
       <p className={classes["ActiveQuiz__question"]}>
         <span>
           {/* added space ' ' - it's '&nbsp;' */}
-          <strong>2.</strong>&nbsp; Как дела?
+          <strong>2.</strong>&nbsp;
+          {/* dispaly question from Quiz.js */}
+          {props.question}
         </span>
         <small>4 из 12</small>
       </p>
 
-      <AnswersList answers={props.answers} />
+      <AnswersList
+        answers={props.answers}
+        onAnswerClick={props.onAnswerClick}
+      />
       {/* <ul>
         <li>1</li>
         <li>2</li>
