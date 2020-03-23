@@ -8,11 +8,16 @@ const ActiveQuiz = props => {
       <p className={classes["ActiveQuiz__question"]}>
         <span>
           {/* added space ' ' - it's '&nbsp;' */}
-          <strong>2.</strong>&nbsp;
+          <strong>{props.questionNumber}.</strong>&nbsp;
           {/* dispaly question from Quiz.js */}
           {props.question}
         </span>
-        <small>4 из 12</small>
+        <small>
+          {/* active */}
+          {props.questionNumber} из&nbsp;
+          {/* total questions in the quiz */}
+          {props.quizLength}
+        </small>
       </p>
 
       <AnswersList
