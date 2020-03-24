@@ -14,6 +14,9 @@ const AnswersList = props => {
             key={index}
             answer={answer}
             onAnswerClick={props.onAnswerClick}
+            //by default props.state null - if proprs.state isn't empty then
+            //props.state[answer.id] - 'answer' this is iteration
+            state={props.state ? props.state[answer.id] : null}
           />
         );
       })}
