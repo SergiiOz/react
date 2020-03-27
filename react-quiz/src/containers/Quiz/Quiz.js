@@ -1,9 +1,11 @@
 import React from "react";
 import classes from "./Quiz.module.css";
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
+import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 
 class Quiz extends React.Component {
   state = {
+    isFinished: false,
     activeQuestion: 0,
     answerState: null, //{ [id]: 'success' or 'error'} (green or red)
     quiz: [
@@ -35,6 +37,15 @@ class Quiz extends React.Component {
   };
 
   onAnswerClickHandler = answerId => {
+    //if we answer right, we just return, that don't enter to function
+    if (this.state.answerState) {
+      //in object has one value
+      const key = Object.keys(this.state.answerState)[0];
+      if (this.state.answerState[key] === "AnswerItem--success") {
+        return;
+      }
+    }
+
     //get question from state
     const question = this.state.quiz[this.state.activeQuestion];
 
@@ -48,7 +59,10 @@ class Quiz extends React.Component {
       const timeout = window.setTimeout(() => {
         //check question finished or no
         if (this.isQiuzFinished()) {
-          console.log("Finished");
+          // console.log("Finished");
+          this.setState({
+            isFinished: true
+          });
         } else {
           //if all right we cross to next question
           this.setState({
@@ -76,16 +90,23 @@ class Quiz extends React.Component {
       <div className={classes.Quiz}>
         <div className={classes["Quiz__wrapper"]}>
           <h1 className={classes["Quiz__title"]}>Ответьте на все вопросы</h1>
-          {/* component */}
-          <ActiveQuiz
-            //pass property to component ActiveQuiz.js
-            question={this.state.quiz[this.state.activeQuestion].question}
-            answers={this.state.quiz[this.state.activeQuestion].answers}
-            onAnswerClick={this.onAnswerClickHandler}
-            questionNumber={this.state.activeQuestion + 1}
-            quizLength={this.state.quiz.length}
-            state={this.state.answerState}
-          />
+
+          {/* if 'isFinished'  === true - we show message 'Finished'*/}
+          {this.state.isFinished ? (
+            // <h1>Finished</h1>
+            <FinishedQuiz />
+          ) : (
+            //component
+            <ActiveQuiz
+              //pass property to component ActiveQuiz.js
+              question={this.state.quiz[this.state.activeQuestion].question}
+              answers={this.state.quiz[this.state.activeQuestion].answers}
+              onAnswerClick={this.onAnswerClickHandler}
+              questionNumber={this.state.activeQuestion + 1}
+              quizLength={this.state.quiz.length}
+              state={this.state.answerState}
+            />
+          )}
         </div>
       </div>
     );
