@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App-wrapper {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas:
+    "header header"
+    "nav main";
+  grid-gap: 10px;
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  grid-area: header;
+  border: 1px solid green;
+}
+
+.header__logo {
+  max-width: 50px;
+}
+
+.image {
+  width: 100%;
+}
+
+/* NAV */
+.nav {
+  grid-area: nav;
+  border: 1px solid blue;
+}
+
+.nav__list {
+  list-style: none;
+}
+
+.nav__link {
+  text-decoration: none;
+}
+
+/* MAIN */
+.main {
+  grid-area: main;
+  border: 1px solid red;
+}
+
+.main__poster {
+  max-width: 900px;
+}
+
+.main__avatar {
+  max-width: 200px;
+}
