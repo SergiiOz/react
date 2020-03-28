@@ -5,7 +5,7 @@ import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 
 class Quiz extends React.Component {
   state = {
-    isFinished: false,
+    isFinished: true,
     activeQuestion: 0,
     answerState: null, //{ [id]: 'success' or 'error'} (green or red)
     quiz: [
