@@ -1,0 +1,14 @@
+.nav {
+  grid-area: nav;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 10px;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+}

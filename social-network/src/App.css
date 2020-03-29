@@ -17,44 +17,6 @@
   margin: 0 auto;
 }
 
-/* HEADER */
-.header {
-  grid-area: header;
-  border: 1px solid green;
-}
-
-.header__logo {
-  max-width: 50px;
-}
-
-.image {
+img {
   width: 100%;
-}
-
-/* NAV */
-.nav {
-  grid-area: nav;
-  border: 1px solid blue;
-}
-
-.nav__list {
-  list-style: none;
-}
-
-.nav__link {
-  text-decoration: none;
-}
-
-/* MAIN */
-.main {
-  grid-area: main;
-  border: 1px solid red;
-}
-
-.main__poster {
-  max-width: 900px;
-}
-
-.main__avatar {
-  max-width: 200px;
 }

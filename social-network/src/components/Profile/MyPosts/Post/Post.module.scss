@@ -1,0 +1,14 @@
+.post {
+  display: flex;
+  // align-items: center;
+  margin-bottom: 15px;
+}
+
+.post__avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.avatar {
+  border-radius: 50%;
+}

@@ -1,0 +1,23 @@
+.profile {
+  grid-area: main;
+  padding: 0 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+
+  &__poster {
+    max-width: 700px;
+  }
+
+  &__avatar {
+    max-width: 200px;
+  }
+
+  &__data {
+    display: flex;
+  }
+
+  &__description {
+    flex: 1 1 auto;
+    padding: 0 10px;
+  }
+}
