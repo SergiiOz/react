@@ -1,34 +1,43 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <ul className={styles["nav__list"]}>
         <li className={styles["nav__item"]}>
-          <a className={styles["nav__link"]} href="#profile">
+          <NavLink
+            className={styles["nav__link"]}
+            activeClassName={styles["nav__link--active"]}
+            to="/profile"
+          >
             Profile
-          </a>
+          </NavLink>
         </li>
         <li className={styles["nav__item"]}>
-          <a className={styles["nav__link"]} href="#messages">
+          <NavLink
+            className={styles["nav__link"]}
+            activeClassName={styles["nav__link--active"]}
+            to="/dialogs"
+          >
             Messages
-          </a>
+          </NavLink>
         </li>
         <li className={styles["nav__item"]}>
-          <a className={styles["nav__link"]} href="#news">
+          <NavLink className={styles["nav__link"]} to="/news">
             News
-          </a>
+          </NavLink>
         </li>
         <li className={styles["nav__item"]}>
-          <a className={styles["nav__link"]} href="#music">
+          <NavLink className={styles["nav__link"]} to="/music">
             Music
-          </a>
+          </NavLink>
         </li>
         <li className={styles["nav__item"]}>
-          <a className={styles["nav__link"]} href="#setting">
+          <NavLink className={styles["nav__link"]} to="/settings">
             Setting
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>

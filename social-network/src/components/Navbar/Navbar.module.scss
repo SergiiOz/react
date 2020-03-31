@@ -3,12 +3,19 @@
   border: 1px solid blue;
   border-radius: 5px;
   padding: 10px;
+  background-color: #55ddd6;
 
   &__list {
     list-style: none;
+    text-transform: uppercase;
   }
 
   &__link {
     text-decoration: none;
+    color: #fff;
+  }
+
+  &__link--active {
+    color: gold;
   }
 }

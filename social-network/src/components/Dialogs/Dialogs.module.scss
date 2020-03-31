@@ -1,0 +1,28 @@
+.title {
+  color: #529dda;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialogs-list {
+  list-style: none;
+}
+
+.messages-list {
+  list-style: none;
+}
+
+.dialog {
+  padding: 5px 10px;
+}
+
+.message {
+  padding: 5px 10px;
+}
+
+.active {
+  color: orange;
+}

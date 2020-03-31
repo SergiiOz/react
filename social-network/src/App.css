@@ -4,17 +4,24 @@
   margin: 0;
 }
 
-.App-wrapper {
+.app-wrapper {
   display: grid;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-template-areas:
     "header header"
-    "nav main";
+    "nav content";
   grid-gap: 10px;
   max-width: 1200px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+.app-wrapper__content {
+  grid-area: content;
+  padding: 0 10px;
+  border: 1px solid red;
+  border-radius: 5px;
 }
 
 img {

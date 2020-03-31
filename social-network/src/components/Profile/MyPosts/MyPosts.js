@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./MyPosts.module.scss";
 import Post from "./Post/Post";
 
-const MyPosts = () => {
+const MyPosts = porps => {
   return (
     <div>
-      <div>
+      <div className={styles.text}>
         <p>My posts:</p>
         <textarea></textarea>
         <br />
@@ -14,8 +14,8 @@ const MyPosts = () => {
 
       {/* posts */}
       <div>
-        <Post />
-        <Post />
+        <Post message="How are you?" likesCount="24" />
+        <Post message="It's my first post." likesCount="15" />
       </div>
     </div>
   );

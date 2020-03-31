@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Post.module.scss";
 
-const Post = () => {
+const Post = props => {
   return (
     <div className={styles.post}>
       <div className={styles["post__avatar"]}>
@@ -11,7 +11,8 @@ const Post = () => {
           alt="avatar"
         />
       </div>
-      <p>post from user</p>
+      <p>{props.message}</p>&nbsp;
+      <span>LIKE: ({props.likesCount})</span>
     </div>
   );
 };
