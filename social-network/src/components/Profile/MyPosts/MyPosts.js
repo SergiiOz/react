@@ -6,7 +6,7 @@ const MyPosts = porps => {
   return (
     <div>
       <div className={styles.text}>
-        <p>My posts:</p>
+        <h3>My posts:</h3>
         <textarea></textarea>
         <br />
         <button>Add post</button>

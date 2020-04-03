@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Profile.module.scss";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = () => {
   return (
@@ -11,21 +12,13 @@ const Profile = () => {
           alt="poster"
         />
       </div>
+      <div className={styles["profile__wrapper"]}>
+        {/* Profile */}
+        <ProfileInfo />
 
-      {/* Profile */}
-      <div className={styles["profile__data"]}>
-        <div className={styles["profile__avatar"]}>
-          <img
-            src="https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg"
-            alt="profile"
-          />
-        </div>
-
-        <div className={styles["profile__description"]}>Description</div>
+        {/* Post form */}
+        <MyPosts />
       </div>
-
-      {/* Post form */}
-      <MyPosts />
     </div>
   );
 };

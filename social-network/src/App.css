@@ -19,7 +19,6 @@
 
 .app-wrapper__content {
   grid-area: content;
-  padding: 0 10px;
   border: 1px solid red;
   border-radius: 5px;
 }
