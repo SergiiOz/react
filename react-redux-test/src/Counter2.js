@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+// import { ADD2 } from "./redux/actions/actionTypes";
+import { add2 } from "./redux/actions/actions";
 
 class Counter2 extends React.Component {
   render() {
@@ -32,7 +34,9 @@ function mapStateToProps(state) {
 //Dispatch
 function mapDispatchToProps(dispatch) {
   return {
-    onAdd2: (number) => dispatch({ type: "ADD2", payload: number }),
+    // onAdd2: (number) => dispatch({ type: ADD2, payload: number }),
+    //we use actionCreators, function add2 return type: "ADD2", payload: number
+    onAdd2: (number) => dispatch(add2(number)),
   };
 }
 

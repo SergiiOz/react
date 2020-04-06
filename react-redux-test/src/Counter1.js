@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+// import { SUB, ADD, NUM_10, ADD_NUMBER } from "./redux/actions/actionTypes";
+import { num_10, add, sub, add_number } from "./redux/actions/actions";
 
 class Counter1 extends React.Component {
   render() {
@@ -21,7 +23,9 @@ class Counter1 extends React.Component {
         </div>
         <hr />
         <div>
+          {/* one version with bind */}
           {/* this.props.onAddNumber.bind(this, 15) */}
+          {/* second version with arrow function */}
           <button onClick={() => this.props.onAddNumber(15)}>Add 15</button>
           <button onClick={this.props.onAddNumber.bind(this, -17)}>
             Sub 17
@@ -43,10 +47,15 @@ function mapStateToProps(state) {
 //dispatch
 function mapDispatchToProps(dispatch) {
   return {
-    onAdd: () => dispatch({ type: "ADD" }),
-    onSub: () => dispatch({ type: "SUB" }),
-    onNum: () => dispatch({ type: "NUM_10", value: 10 }),
-    onAddNumber: (number) => dispatch({ type: "ADD_NUMBER", payload: number }),
+    onAdd: () => dispatch(add()),
+    onSub: () => dispatch(sub()),
+    //refactoring
+    // onNum: () => dispatch({ type: "NUM_10", value: 10 }),
+    //create in directory actionTypes variable NUM_10
+    // onNum: () => dispatch({ type: NUM_10, value: 10 }),
+    //create in directory action - this functions num_10() return type: "NUB_10" and value: 10
+    onNum: () => dispatch(num_10()),
+    onAddNumber: (number) => dispatch(add_number(number)),
   };
 }
 
