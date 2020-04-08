@@ -10,7 +10,7 @@ function App() {
       //random number 0 - 10
       const randomNumber = Math.round(Math.random() * 10);
       //change count
-      setCount(count + randomNumber);
+      setCount(randomNumber);
     }, 3000);
     return () => clearInterval(interval);
   });
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       {/* Child component */}
-      <ItemApp myCount={count} />
+      <ItemApp parentCount={count} />
     </div>
   );
 }
