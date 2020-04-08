@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Flip from "./Flip";
 
 function ItemApp(props) {
   // console.log(props);
@@ -14,7 +15,8 @@ function ItemApp(props) {
   return (
     <div>
       <h3>Sum Random numbers, every 3 seconds:</h3>
-      <div style={{ fontSize: "36px" }}>{sumChild}</div>
+      {/* <div style={{ fontSize: "36px" }}>{sumChild}</div> */}
+      <Flip sumChild={sumChild} />
     </div>
   );
 }
