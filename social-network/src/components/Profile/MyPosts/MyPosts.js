@@ -2,7 +2,12 @@ import React from "react";
 import styles from "./MyPosts.module.scss";
 import Post from "./Post/Post";
 
-const MyPosts = porps => {
+const MyPosts = (props) => {
+  let postsElement = props.postsData.map((post) => {
+    return (
+      <Post key={post.id} message={post.message} likesCount={post.likesCount} />
+    );
+  });
   return (
     <div>
       <div className={styles.text}>
@@ -14,8 +19,9 @@ const MyPosts = porps => {
 
       {/* posts */}
       <div>
-        <Post message="How are you?" likesCount="24" />
-        <Post message="It's my first post." likesCount="15" />
+        {/* <Post message="Are you here first time?" likesCount="24" />
+        <Post message="It's my first post." likesCount="15" /> */}
+        {postsElement}
       </div>
     </div>
   );

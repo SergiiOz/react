@@ -3,7 +3,7 @@ import styles from "./Profile.module.scss";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div>
       <div className={styles["profile__poster"]}>
@@ -17,7 +17,7 @@ const Profile = () => {
         <ProfileInfo />
 
         {/* Post form */}
-        <MyPosts />
+        <MyPosts postsData={props.postsData} />
       </div>
     </div>
   );
