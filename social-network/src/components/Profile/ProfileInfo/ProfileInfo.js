@@ -6,6 +6,7 @@ const ProfileInfo = () => {
     <div className={styles["profile__info"]}>
       <div className={styles["profile__avatar"]}>
         <img
+          className={styles.avatar}
           src="https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg"
           alt="profile"
         />

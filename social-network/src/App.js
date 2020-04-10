@@ -24,20 +24,13 @@ const App = (props) => {
           {/* PROFILE  we use construction with 'render' and arrow function, for pass props to component*/}
           <Route
             path="/profile"
-            render={() => (
-              <Profile postsData={props.state.profilePage.postsData} />
-            )}
+            render={() => <Profile state={props.state.profilePage} />}
           />
 
           {/* MESSAGES */}
           <Route
             path="/dialogs"
-            render={() => (
-              <Dialogs
-                dialogsData={props.state.dialogsPage.dialogsData}
-                messagesData={props.state.dialogsPage.messagesData}
-              />
-            )}
+            render={() => <Dialogs state={props.state.dialogsPage} />}
           />
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />

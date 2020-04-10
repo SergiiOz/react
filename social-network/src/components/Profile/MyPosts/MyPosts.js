@@ -3,7 +3,7 @@ import styles from "./MyPosts.module.scss";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let postsElement = props.postsData.map((post) => {
+  let postsElement = props.state.postsData.map((post) => {
     return (
       <Post key={post.id} message={post.message} likesCount={post.likesCount} />
     );
