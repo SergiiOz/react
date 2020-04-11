@@ -1,9 +1,15 @@
 .nav {
   grid-area: nav;
+  display: flex;
+  flex-direction: column;
   border: 1px solid blue;
   border-radius: 5px;
   padding: 10px;
   background-color: #55ddd6;
+
+  &__inner {
+    flex: 1 1 auto;
+  }
 
   &__list {
     list-style: none;
@@ -18,4 +24,21 @@
   &__link--active {
     color: gold;
   }
+}
+
+.avatar__block {
+  width: 40px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.sidebarList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebarTitle {
+  margin-bottom: 15px;
 }
