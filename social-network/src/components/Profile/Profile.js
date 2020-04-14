@@ -17,7 +17,7 @@ const Profile = (props) => {
         <ProfileInfo />
 
         {/* Post form */}
-        <MyPosts state={props.state} />
+        <MyPosts state={props.state} addPost={props.addPost} />
       </div>
     </div>
   );

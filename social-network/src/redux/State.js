@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 export const state = {
   // PROFILE
   profilePage: {
@@ -75,4 +77,18 @@ export const state = {
       },
     ],
   },
+};
+
+//add new message to ProfilePage/postsData
+export const addPost = (postMessage) => {
+  //create new message
+  let newMessage = {
+    id: 5,
+    message: postMessage,
+    likesCount: 0,
+  };
+
+  //add new message to array pastsData
+  state.profilePage.postsData.push(newMessage);
+  rerenderEntireTree(state);
 };

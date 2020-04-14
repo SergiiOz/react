@@ -8,13 +8,27 @@ const MyPosts = (props) => {
       <Post key={post.id} message={post.message} likesCount={post.likesCount} />
     );
   });
+
+  //create Ref for get access to DOM element
+  let newPostElement = React.createRef();
+
+  function addNewPost() {
+    //get value from the element textarea DOM
+    let text = newPostElement.current.value;
+    //after get value we clear textarea
+    newPostElement.current.value = "";
+    //function from redux/state.js
+    props.addPost(text);
+  }
+
   return (
     <div>
       <div className={styles.text}>
         <h3>My posts:</h3>
-        <textarea></textarea>
+        {/* get value through ref */}
+        <textarea ref={newPostElement}></textarea>
         <br />
-        <button>Add post</button>
+        <button onClick={addNewPost}>Add post</button>
       </div>
 
       {/* posts */}

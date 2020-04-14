@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = (props) => {
+  const [text, setText] = useState("");
+
   //method map for dialogs
   let dialogsElement = props.state.dialogsData.map((dialog) => {
     return (
@@ -21,9 +23,32 @@ const Dialogs = (props) => {
     return <Message key={message.id} message={message.text} id={message.id} />;
   });
 
+  //create ref
+  let newMessage = React.createRef();
+  const addMessage = () => {
+    //get value from input
+    let textFromTextarea = newMessage.current.value;
+    return setText(textFromTextarea);
+  };
+
   return (
     <div className={styles.dialogsWrapper}>
       <h2 className={styles.title}>Dialogs</h2>
+      {/* fild for new message */}
+      <label htmlFor="story">New message:</label>
+      <br />
+      <textarea
+        ref={newMessage}
+        onChange={addMessage}
+        id="story"
+        name="story"
+        rows="5"
+        cols="33"
+        // defaultValue="write text..."
+      ></textarea>
+      <br />
+      <button>Add post</button>
+      <p>{text}</p>
 
       <div className={styles.content}>
         <ul className={styles["dialogs-list"]}>
