@@ -13,20 +13,27 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
   function addNewPost() {
-    //get value from the element textarea DOM
-    let text = newPostElement.current.value;
-    //after get value we clear textarea
-    newPostElement.current.value = "";
     //function from redux/state.js
-    props.addPost(text);
+    props.addPost();
+    //after get value we clear textarea in redux/state.js
   }
 
+  let onPostChange = () => {
+    //get value from the element textarea DOM
+    let text = newPostElement.current.value;
+    // console.log(text);
+    props.updateNewPostText(text);
+  };
   return (
     <div>
       <div className={styles.text}>
         <h3>My posts:</h3>
         {/* get value through ref */}
-        <textarea ref={newPostElement}></textarea>
+        <textarea
+          ref={newPostElement}
+          onChange={onPostChange}
+          value={props.state.newPostText}
+        ></textarea>
         <br />
         <button onClick={addNewPost}>Add post</button>
       </div>

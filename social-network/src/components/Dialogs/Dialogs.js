@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = (props) => {
-  const [text, setText] = useState("");
-
   //method map for dialogs
   let dialogsElement = props.state.dialogsData.map((dialog) => {
     return (
@@ -23,12 +21,20 @@ const Dialogs = (props) => {
     return <Message key={message.id} message={message.text} id={message.id} />;
   });
 
-  //create ref
+  //create ref, access to textarea
   let newMessage = React.createRef();
-  const addMessage = () => {
+
+  const addMessageFromTextArea = () => {
+    //add message to State
+    props.addMessage();
+    //after clear textarea
+    newMessage.current.value = "";
+  };
+
+  let changeMessageArea = () => {
     //get value from input
     let textFromTextarea = newMessage.current.value;
-    return setText(textFromTextarea);
+    props.updateNewMessageText(textFromTextarea);
   };
 
   return (
@@ -39,7 +45,7 @@ const Dialogs = (props) => {
       <br />
       <textarea
         ref={newMessage}
-        onChange={addMessage}
+        onChange={changeMessageArea}
         id="story"
         name="story"
         rows="5"
@@ -47,8 +53,7 @@ const Dialogs = (props) => {
         // defaultValue="write text..."
       ></textarea>
       <br />
-      <button>Add post</button>
-      <p>{text}</p>
+      <button onClick={addMessageFromTextArea}>Add post</button>
 
       <div className={styles.content}>
         <ul className={styles["dialogs-list"]}>
