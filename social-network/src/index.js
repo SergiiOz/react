@@ -24,10 +24,12 @@ export let rerenderEntireTree = (state) => {
           // messagesData={state.messagesData}
           state={state}
           //связываем метод addPost со store c помощью bind, чтобы this указывало на store при передаче дальше
-          addPost={store.addPost.bind(store)}
-          addMessage={store.addMessage.bind(store)}
-          updateNewPostText={store.updateNewPostText.bind(store)}
-          updateNewMessageText={store.updateNewMessageText.bind(store)}
+          dispatch={store.dispatch.bind(store)}
+          //связываем метод addPost со store c помощью bind, чтобы this указывало на store при передаче дальш
+          // addPost={store.addPost.bind(store)}
+          // updateNewPostText={store.updateNewPostText.bind(store)}
+          // addMessage={store.addMessage.bind(store)}
+          // updateNewMessageText={store.updateNewMessageText.bind(store)}
         />
       </React.StrictMode>
     </BrowserRouter>,
@@ -35,6 +37,7 @@ export let rerenderEntireTree = (state) => {
   );
 };
 
+//pass in function state = store.getState()
 rerenderEntireTree(store.getState());
 
 store.subscribe(rerenderEntireTree);

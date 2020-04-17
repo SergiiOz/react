@@ -14,7 +14,10 @@ const MyPosts = (props) => {
 
   function addNewPost() {
     //function from redux/state.js
-    props.addPost();
+    // props.addPost();
+    //let action = {type: 'ADD-POST}
+    props.dispatch({ type: "ADD-POST" });
+
     //after get value we clear textarea in redux/state.js
   }
 
@@ -22,7 +25,12 @@ const MyPosts = (props) => {
     //get value from the element textarea DOM
     let text = newPostElement.current.value;
     // console.log(text);
-    props.updateNewPostText(text);
+    let action = {
+      type: "UPDATE-NEW-POST-TEXT",
+      newText: text,
+    };
+    // props.updateNewPostText(text);
+    props.dispatch(action);
   };
   return (
     <div>

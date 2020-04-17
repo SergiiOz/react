@@ -26,15 +26,21 @@ const Dialogs = (props) => {
 
   const addMessageFromTextArea = () => {
     //add message to State
-    props.addMessage();
+    // props.addMessage();
+    props.dispatch({ type: "ADD-MESSAGE" });
+    //after get value we clear textarea in redux/state.js
     //after clear textarea
-    newMessage.current.value = "";
+    // newMessage.current.value = "";
   };
 
   let changeMessageArea = () => {
     //get value from input
     let textFromTextarea = newMessage.current.value;
-    props.updateNewMessageText(textFromTextarea);
+    // props.updateNewMessageText(textFromTextarea);
+    props.dispatch({
+      type: "UPDATE-NEW-MESSAGE-TEXT",
+      textMessage: textFromTextarea,
+    });
   };
 
   return (
