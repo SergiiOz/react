@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {
+  addMessageActionCreator,
+  updateNewMessageTextActionCreator,
+} from "./../../redux/State";
 
 const Dialogs = (props) => {
   //method map for dialogs
@@ -27,7 +31,8 @@ const Dialogs = (props) => {
   const addMessageFromTextArea = () => {
     //add message to State
     // props.addMessage();
-    props.dispatch({ type: "ADD-MESSAGE" });
+    // props.dispatch({ type: "ADD-MESSAGE" });
+    props.dispatch(addMessageActionCreator());
     //after get value we clear textarea in redux/state.js
     //after clear textarea
     // newMessage.current.value = "";
@@ -37,10 +42,11 @@ const Dialogs = (props) => {
     //get value from input
     let textFromTextarea = newMessage.current.value;
     // props.updateNewMessageText(textFromTextarea);
-    props.dispatch({
-      type: "UPDATE-NEW-MESSAGE-TEXT",
-      textMessage: textFromTextarea,
-    });
+    // props.dispatch({
+    //   type: "UPDATE-NEW-MESSAGE-TEXT",
+    //   textMessage: textFromTextarea,
+    // });
+    props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
   };
 
   return (

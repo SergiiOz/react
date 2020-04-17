@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./MyPosts.module.scss";
 import Post from "./Post/Post";
+import {
+  addPostActionCreator,
+  updateNewPostTextActionCreator,
+} from "./../../../redux/State";
 
 const MyPosts = (props) => {
   let postsElement = props.state.postsData.map((post) => {
@@ -16,7 +20,7 @@ const MyPosts = (props) => {
     //function from redux/state.js
     // props.addPost();
     //let action = {type: 'ADD-POST}
-    props.dispatch({ type: "ADD-POST" });
+    props.dispatch(addPostActionCreator());
 
     //after get value we clear textarea in redux/state.js
   }
@@ -25,12 +29,12 @@ const MyPosts = (props) => {
     //get value from the element textarea DOM
     let text = newPostElement.current.value;
     // console.log(text);
-    let action = {
-      type: "UPDATE-NEW-POST-TEXT",
-      newText: text,
-    };
+    // let action = {
+    //   type: "UPDATE-NEW-POST-TEXT",
+    //   newText: text,
+    // };
     // props.updateNewPostText(text);
-    props.dispatch(action);
+    props.dispatch(updateNewPostTextActionCreator(text));
   };
   return (
     <div>
