@@ -1,7 +1,11 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+import profilePageReducer from "./profile-reducer";
+import dialogsPageReducer from "./dialogs-reducer";
+import sideBarReducer from "./sidebar-reducer";
+
+// const ADD_POST = "ADD-POST";
+// const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+// const ADD_MESSAGE = "ADD-MESSAGE";
+// const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 let store = {
   _state: {
@@ -107,85 +111,108 @@ let store = {
     //==========================================
     // change newPostText and addPost
     //==========================================
-    //add new message to ProfilePage/postsData
-
-    if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    }
-
-    // action{type: 'ADD-POST'}
-    if (action.type === ADD_POST) {
-      //create new message
-      let newMessage = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-
-      //add new message to array pastsData
-      this._state.profilePage.postsData.push(newMessage);
-      //after added new message in state we clear textarea in redux/state.js
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profilePageReducer(
+      this._state.profilePage,
+      action
+    );
 
     //==========================================
     // change newMessageText and addMessage
     //==========================================
+    this._state.dialogsPage = dialogsPageReducer(
+      this._state.dialogsPage,
+      action
+    );
 
-    //change newMessageText from Dialogs/
-    if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.newMessageText = action.textMessage;
-      this._callSubscriber(this._state);
-    }
+    //==========================================
+    // change sideBar
+    //==========================================
+    this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
-    if (action.type === ADD_MESSAGE) {
-      //create new message
-      let newMessageToMessageData = {
-        id: 6,
-        text: this._state.dialogsPage.newMessageText,
-      };
-
-      this._state.dialogsPage.messagesData.push(newMessageToMessageData);
-      //after added new message in state we clear textarea in redux/state.js
-      this._state.dialogsPage.newMessageText = "";
-      this._callSubscriber(this._state);
-    }
+    //rerender
+    this._callSubscriber(this._state);
   },
 };
-
-// ACTION CREATOR
-export const addPostActionCreator = () => {
-  return {
-    type: ADD_POST,
-  };
-};
-
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-  };
-};
-
-export const addMessageActionCreator = () => {
-  return {
-    type: ADD_MESSAGE,
-  };
-};
-
-export const updateNewMessageTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    textMessage: text,
-  };
-};
-
 export default store;
 
 //если нам понадобится 'store'  чтобы к нему обратится
 window.store = store;
+
+//this code was refactored - taken out in profile-reducer and dialogs-reducer
+//==========================================
+// change newPostText and addPost
+//==========================================
+//add new message to ProfilePage/postsData
+// if (action.type === UPDATE_NEW_POST_TEXT) {
+//   this._state.profilePage.newPostText = action.newText;
+//   this._callSubscriber(this._state);
+// }
+
+// // action{type: 'ADD-POST'}
+// if (action.type === ADD_POST) {
+//   //create new message
+//   let newMessage = {
+//     id: 5,
+//     message: this._state.profilePage.newPostText,
+//     likesCount: 0,
+//   };
+
+//   //add new message to array pastsData
+//   this._state.profilePage.postsData.push(newMessage);
+//   //after added new message in state we clear textarea in redux/state.js
+//   this._state.profilePage.newPostText = "";
+//   this._callSubscriber(this._state);
+// }
+
+// //==========================================
+// // change newMessageText and addMessage
+// //==========================================
+
+// //change newMessageText from Dialogs/
+// if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+//   this._state.dialogsPage.newMessageText = action.textMessage;
+//   this._callSubscriber(this._state);
+// }
+
+// if (action.type === ADD_MESSAGE) {
+//   //create new message
+//   let newMessageToMessageData = {
+//     id: 6,
+//     text: this._state.dialogsPage.newMessageText,
+//   };
+
+//   this._state.dialogsPage.messagesData.push(newMessageToMessageData);
+//   //after added new message in state we clear textarea in redux/state.js
+//   this._state.dialogsPage.newMessageText = "";
+//   this._callSubscriber(this._state);
+// }
+// ACTION CREATOR
+// export const addPostActionCreator = () => {
+//   return {
+//     type: ADD_POST,
+//   };
+// };
+
+// export const updateNewPostTextActionCreator = (text) => {
+//   return {
+//     type: UPDATE_NEW_POST_TEXT,
+//     newText: text,
+//   };
+// };
+
+// export const addMessageActionCreator = () => {
+//   return {
+//     type: ADD_MESSAGE,
+//   };
+// };
+
+// export const updateNewMessageTextActionCreator = (text) => {
+//   return {
+//     type: UPDATE_NEW_MESSAGE_TEXT,
+//     textMessage: text,
+//   };
+// };
+
 //==========================================
 // change newPostText and addPost
 //==========================================

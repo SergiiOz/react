@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import {
   addMessageActionCreator,
   updateNewMessageTextActionCreator,
-} from "./../../redux/State";
+} from "./../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
   //method map for dialogs
@@ -26,7 +26,10 @@ const Dialogs = (props) => {
   });
 
   //create ref, access to textarea
-  let newMessage = React.createRef();
+  // let newMessage = React.createRef(); - реф не буду
+
+  //value from refux/store._state
+  let newMessageTextFromState = props.state.newMessageText;
 
   const addMessageFromTextArea = () => {
     //add message to State
@@ -38,9 +41,10 @@ const Dialogs = (props) => {
     // newMessage.current.value = "";
   };
 
-  let changeMessageArea = () => {
+  let changeMessageArea = (event) => {
     //get value from input
-    let textFromTextarea = newMessage.current.value;
+    // let textFromTextarea = newMessage.current.value;
+    let textFromTextarea = event.target.value;
     // props.updateNewMessageText(textFromTextarea);
     // props.dispatch({
     //   type: "UPDATE-NEW-MESSAGE-TEXT",
@@ -56,8 +60,11 @@ const Dialogs = (props) => {
       <label htmlFor="story">New message:</label>
       <br />
       <textarea
-        ref={newMessage}
+        // ref={newMessage} we remove
+        //value from refux/store._state
+        value={newMessageTextFromState}
         onChange={changeMessageArea}
+        placeholder="write text ..."
         id="story"
         name="story"
         rows="5"
