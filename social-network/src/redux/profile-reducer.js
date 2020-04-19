@@ -1,7 +1,17 @@
 export const ADD_POST = "ADD-POST";
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-const profilePageReducer = (state, action) => {
+const initialState = {
+  postsData: [
+    { id: 1, message: "Are you here first time?", likesCount: 24 },
+    { id: 2, message: "It's my first post.", likesCount: 15 },
+    { id: 3, message: "So far...", likesCount: 9 },
+    { id: 4, message: "I have done it.", likesCount: 19 },
+  ],
+  newPostText: "default post text",
+};
+
+const profilePageReducer = (state = initialState, action) => {
   //==========================================
   // change newPostText and addPost
   //==========================================

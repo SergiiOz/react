@@ -66,6 +66,7 @@ let store = {
       newMessageText: "",
     },
 
+    //SIDEBAR
     sideBar: {
       friends: [
         {
