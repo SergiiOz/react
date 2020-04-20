@@ -2,14 +2,15 @@ import React from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {
-  addMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from "./../../redux/dialogs-reducer";
+// import {
+//   addMessageActionCreator,
+//   updateNewMessageTextActionCreator,
+// } from "./../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
+  let state = props.dialogsPage;
   //method map for dialogs
-  let dialogsElement = props.state.dialogsData.map((dialog) => {
+  let dialogsElement = state.dialogsData.map((dialog) => {
     return (
       <DialogItem
         key={dialog.id}
@@ -21,7 +22,7 @@ const Dialogs = (props) => {
   });
 
   //method map for messages //
-  let messagesElement = props.state.messagesData.map((message) => {
+  let messagesElement = state.messagesData.map((message) => {
     return <Message key={message.id} message={message.text} id={message.id} />;
   });
 
@@ -29,28 +30,28 @@ const Dialogs = (props) => {
   // let newMessage = React.createRef(); - реф не буду
 
   //value from refux/store._state
-  let newMessageTextFromState = props.state.newMessageText;
+  // let newMessageTextFromState = props.state.newMessageText;
 
-  const addMessageFromTextArea = () => {
+  const onAddMessageFromTextArea = () => {
     //add message to State
-    // props.addMessage();
+    props.addMessage();
     // props.dispatch({ type: "ADD-MESSAGE" });
-    props.dispatch(addMessageActionCreator());
+    // props.dispatch(addMessageActionCreator());
     //after get value we clear textarea in redux/state.js
     //after clear textarea
     // newMessage.current.value = "";
   };
 
-  let changeMessageArea = (event) => {
+  let onChangeMessageArea = (event) => {
     //get value from input
     // let textFromTextarea = newMessage.current.value;
     let textFromTextarea = event.target.value;
-    // props.updateNewMessageText(textFromTextarea);
+    props.updateNewMessageText(textFromTextarea);
     // props.dispatch({
     //   type: "UPDATE-NEW-MESSAGE-TEXT",
     //   textMessage: textFromTextarea,
     // });
-    props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
+    // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
   };
 
   return (
@@ -62,8 +63,8 @@ const Dialogs = (props) => {
       <textarea
         // ref={newMessage} we remove
         //value from refux/store._state
-        value={newMessageTextFromState}
-        onChange={changeMessageArea}
+        value={state.newMessageText}
+        onChange={onChangeMessageArea}
         placeholder="write text ..."
         id="story"
         name="story"
@@ -72,7 +73,7 @@ const Dialogs = (props) => {
         // defaultValue="write text..."
       ></textarea>
       <br />
-      <button onClick={addMessageFromTextArea}>Add post</button>
+      <button onClick={onAddMessageFromTextArea}>Add post</button>
 
       <div className={styles.content}>
         <ul className={styles["dialogs-list"]}>

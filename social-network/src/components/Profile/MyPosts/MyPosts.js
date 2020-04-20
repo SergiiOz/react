@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./MyPosts.module.scss";
 import Post from "./Post/Post";
-import {
-  addPostActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profile-reducer";
+// import {
+//   addPostActionCreator,
+//   updateNewPostTextActionCreator,
+// } from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
-  let postsElement = props.state.postsData.map((post) => {
+  let postsElement = props.postsData.map((post) => {
     return (
       <Post key={post.id} message={post.message} likesCount={post.likesCount} />
     );
@@ -16,11 +16,11 @@ const MyPosts = (props) => {
   //create Ref for get access to DOM element
   let newPostElement = React.createRef();
 
-  function addNewPost() {
+  function onAddNewPost() {
     //function from redux/state.js
-    // props.addPost();
+    props.addPost();
     //let action = {type: 'ADD-POST}
-    props.dispatch(addPostActionCreator());
+    // props.dispatch(addPostActionCreator());
 
     //after get value we clear textarea in redux/state.js
   }
@@ -34,7 +34,8 @@ const MyPosts = (props) => {
     //   newText: text,
     // };
     // props.updateNewPostText(text);
-    props.dispatch(updateNewPostTextActionCreator(text));
+    // props.dispatch(updateNewPostTextActionCreator(text));
+    props.updateNewPostText(text);
   };
   return (
     <div>
@@ -44,10 +45,11 @@ const MyPosts = (props) => {
         <textarea
           ref={newPostElement}
           onChange={onPostChange}
-          value={props.state.newPostText}
+          value={props.newPostText}
+          // value={props.state.newPostText}
         ></textarea>
         <br />
-        <button onClick={addNewPost}>Add post</button>
+        <button onClick={onAddNewPost}>Add post</button>
       </div>
 
       {/* posts */}

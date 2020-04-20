@@ -20,6 +20,7 @@ export let rerenderEntireTree = (state) => {
     <BrowserRouter>
       <React.StrictMode>
         <App
+          store={store}
           // postsData={state.postsData}
           // dialogsData={state.dialogsData}
           // messagesData={state.messagesData}

@@ -1,3 +1,7 @@
+//==========================================
+// This store I used before connected redux
+//==========================================
+
 import profilePageReducer from "./profile-reducer";
 import dialogsPageReducer from "./dialogs-reducer";
 import sideBarReducer from "./sidebar-reducer";
