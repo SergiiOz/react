@@ -20,9 +20,10 @@ const profilePageReducer = (state = initialState, action) => {
   switch (action.type) {
     //   if (action.type === UPDATE_NEW_POST_TEXT) {
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
-      //   break;
-      return state;
+      //create clone 'state'
+      return { ...state, newPostText: action.newText };
+    // break;
+    // return state;
     //   }
 
     // action{type: 'ADD-POST'}
@@ -35,12 +36,14 @@ const profilePageReducer = (state = initialState, action) => {
         likesCount: 0,
       };
 
+      //create clone 'state'
+      const newState = { ...state };
       //add new message to array pastsData
-      state.postsData.push(newMessage);
+      newState.postsData.push(newMessage);
       //after added new message in state we clear textarea in redux/state.js
-      state.newPostText = "";
+      newState.newPostText = "";
       //   break;
-      return state;
+      return newState;
     //   }
     default:
       return state;
