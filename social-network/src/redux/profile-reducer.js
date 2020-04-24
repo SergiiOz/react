@@ -38,6 +38,8 @@ const profilePageReducer = (state = initialState, action) => {
 
       //create clone 'state'
       const newState = { ...state };
+      //create clone 'pastsData'
+      newState.postsData = [...state.postsData];
       //add new message to array pastsData
       newState.postsData.push(newMessage);
       //after added new message in state we clear textarea in redux/state.js

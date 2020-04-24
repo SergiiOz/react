@@ -54,23 +54,43 @@ const dialogsPageReducer = (state = initialState, action) => {
   switch (action.type) {
     //change newMessageText from Dialogs/
     //   if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-    case UPDATE_NEW_MESSAGE_TEXT:
-      state.newMessageText = action.textMessage;
-      return state;
+    case UPDATE_NEW_MESSAGE_TEXT: {
+      let newState = { ...state };
+      newState.newMessageText = action.textMessage;
+      return newState;
+    }
+
     //   }
 
     //   if (action.type === ADD_MESSAGE) {
     //create new message
-    case ADD_MESSAGE:
-      let newMessageToMessageData = {
-        id: 6,
-        text: state.newMessageText,
+    case ADD_MESSAGE: {
+      return {
+        //copy state
+        ...state,
+        messagesData: [
+          //copy array messagesData
+          ...state.messagesData,
+          //add new object to array messagesData (analog method .push)
+          {
+            id: 6,
+            text: state.newMessageText,
+          },
+        ],
+        //set empty string
+        newMessageText: "",
       };
-
-      state.messagesData.push(newMessageToMessageData);
-      //after added new message in state we clear textarea in redux/state.js
-      state.newMessageText = "";
-      return state;
+      // let newMessageToMessageData = {
+      //   id: 6,
+      //   text: state.newMessageText,
+      // };
+      // let newState = { ...state}
+      // newState.messagesData = [...state.messagesData];
+      // newState.messagesData.push(newMessageToMessageData);
+      // //after added new message in state we clear textarea in redux/state.js
+      // newState.newMessageText = "";
+      // return newState;
+    }
     default:
       return state;
   }

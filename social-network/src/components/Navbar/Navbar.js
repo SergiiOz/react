@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Navbar = (props) => {
   const favoriteFriends = props.state.friends.map((friend) => {
@@ -46,9 +47,15 @@ const Navbar = (props) => {
               Music
             </NavLink>
           </li>
-          <li className={styles["nav__item"]}>
+          <li>
             <NavLink className={styles["nav__link"]} to="/settings">
               Setting
+            </NavLink>
+          </li>
+
+          <li className={styles["nav__item"]}>
+            <NavLink className={styles["nav__link"]} to="/users">
+              Find Users
             </NavLink>
           </li>
         </ul>
@@ -63,4 +70,9 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+//props pass though react-redux
+let mapStateToProps = (state) => {
+  return { state: state.sideBar };
+};
+
+export default connect(mapStateToProps)(Navbar);

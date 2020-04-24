@@ -62,7 +62,7 @@ const Dialogs = (props) => {
       <br />
       <textarea
         // ref={newMessage} we remove
-        //value from refux/store._state
+        //value from redux/store._state
         value={state.newMessageText}
         onChange={onChangeMessageArea}
         placeholder="write text ..."

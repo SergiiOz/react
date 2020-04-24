@@ -12,4 +12,8 @@ let rootReducer = combineReducers({
 
 let store = createStore(rootReducer);
 
+//it for display info in console
+//example write in console: console.log(store.getState())
+window.store = store;
+
 export default store;
