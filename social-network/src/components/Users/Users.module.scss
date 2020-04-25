@@ -1,0 +1,29 @@
+.usersWrapper {
+  padding: 10px;
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 80px 3fr;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  border: 1px solid #000;
+  border-radius: 5px;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.avatarBlock {
+  text-align: center;
+}
+.avatarWrapper {
+  width: 40px;
+  margin: 0 auto;
+}
+.avatar {
+  border-radius: 50%;
+}
