@@ -1,13 +1,13 @@
-import React from "react";
-import styles from "./Navbar.module.scss";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import styles from './Navbar.module.scss';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Navbar = (props) => {
   const favoriteFriends = props.state.friends.map((friend) => {
     return (
       <div key={friend.id}>
-        <div className={styles["avatar__block"]}>
+        <div className={styles['avatar__block']}>
           <img className={styles.avatar} src={friend.photo} alt="img" />
         </div>
         {friend.name}
@@ -17,45 +17,45 @@ const Navbar = (props) => {
 
   return (
     <nav className={styles.nav}>
-      <div className={styles["nav__inner"]}>
-        <ul className={styles["nav__list"]}>
-          <li className={styles["nav__item"]}>
+      <div className={styles['nav__inner']}>
+        <ul className={styles['nav__list']}>
+          <li className={styles['nav__item']}>
             <NavLink
-              className={styles["nav__link"]}
-              activeClassName={styles["nav__link--active"]}
+              className={styles['nav__link']}
+              activeClassName={styles['nav__link--active']}
               to="/profile"
             >
               Profile
             </NavLink>
           </li>
-          <li className={styles["nav__item"]}>
+          <li className={styles['nav__item']}>
             <NavLink
-              className={styles["nav__link"]}
-              activeClassName={styles["nav__link--active"]}
+              className={styles['nav__link']}
+              activeClassName={styles['nav__link--active']}
               to="/dialogs"
             >
               Messages
             </NavLink>
           </li>
-          <li className={styles["nav__item"]}>
-            <NavLink className={styles["nav__link"]} to="/news">
+          <li className={styles['nav__item']}>
+            <NavLink className={styles['nav__link']} to="/news">
               News
             </NavLink>
           </li>
-          <li className={styles["nav__item"]}>
-            <NavLink className={styles["nav__link"]} to="/music">
+          <li className={styles['nav__item']}>
+            <NavLink className={styles['nav__link']} to="/music">
               Music
             </NavLink>
           </li>
           <li>
-            <NavLink className={styles["nav__link"]} to="/settings">
+            <NavLink className={styles['nav__link']} to="/settings">
               Setting
             </NavLink>
           </li>
 
-          <li className={styles["nav__item"]}>
-            <NavLink className={styles["nav__link"]} to="/users">
-              Find Users
+          <li className={styles['nav__item']}>
+            <NavLink className={styles['nav__link']} to="/users">
+              Users
             </NavLink>
           </li>
         </ul>

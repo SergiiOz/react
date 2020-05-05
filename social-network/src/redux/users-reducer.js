@@ -1,47 +1,47 @@
-export const FOLLOW = "FOLLOW";
-export const UNFOLLOW = "UNFOLLOW";
-export const SET_USERS = "SET_USERS";
+export const FOLLOW = 'FOLLOW';
+export const UNFOLLOW = 'UNFOLLOW';
+export const SET_USERS = 'SET_USERS';
 
 const initialState = {
   users: [
-    {
-      id: 1,
-      followed: true,
-      fullName: "Michel",
-      status: "I'm a developer",
-      photoUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU",
-      location: {
-        country: "Poland",
-        city: "Helm",
-      },
-    },
-    {
-      id: 2,
-      followed: false,
-      fullName: "Sergii",
-      status: "I'm a front-end developer",
-      photoUrl:
-        "https://p7.hiclipart.com/preview/312/283/679/avatar-computer-icons-user-profile-business-user-avatar.jpg",
+    // {
+    //   id: 1,
+    //   followed: true,
+    //   fullName: 'Michel',
+    //   status: "I'm a developer",
+    //   photoUrl:
+    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU',
+    //   location: {
+    //     country: 'Poland',
+    //     city: 'Helm',
+    //   },
+    // },
+    // {
+    //   id: 2,
+    //   followed: false,
+    //   fullName: 'Sergii',
+    //   status: "I'm a front-end developer",
+    //   photoUrl:
+    //     'https://p7.hiclipart.com/preview/312/283/679/avatar-computer-icons-user-profile-business-user-avatar.jpg',
 
-      location: {
-        country: "Ukraine",
-        city: "Rivne",
-      },
-    },
-    {
-      id: 3,
-      followed: true,
-      fullName: "Alex",
-      status: "I'm a beck-end developer",
-      photoUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU",
+    //   location: {
+    //     country: 'Ukraine',
+    //     city: 'Rivne',
+    //   },
+    // },
+    // {
+    //   id: 3,
+    //   followed: true,
+    //   fullName: 'Alex',
+    //   status: "I'm a beck-end developer",
+    //   photoUrl:
+    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU',
 
-      location: {
-        country: "USA",
-        city: "California",
-      },
-    },
+    //   location: {
+    //     country: 'USA',
+    //     city: 'California',
+    //   },
+    // },
   ],
 };
 
@@ -72,7 +72,8 @@ const usersReducer = (state = initialState, action) => {
         }),
       };
     case SET_USERS:
-      //соеденяем два мссива сатрый и новый который прийдее в 'action'
+      //изначально масив буде пустой и его нужно будет заполнить обьектами, которые прийдут с сервера
+      //если масив изначально не пустой, то соеденяем два мссива сатрый и новый который прийдее в 'action'
       return { ...state, users: [...state.users, ...action.users] };
     default:
       return state;
