@@ -23,7 +23,6 @@ const initialState = {
     //   status: "I'm a front-end developer",
     //   photoUrl:
     //     'https://p7.hiclipart.com/preview/312/283/679/avatar-computer-icons-user-profile-business-user-avatar.jpg',
-
     //   location: {
     //     country: 'Ukraine',
     //     city: 'Rivne',
@@ -36,13 +35,15 @@ const initialState = {
     //   status: "I'm a beck-end developer",
     //   photoUrl:
     //     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU',
-
     //   location: {
     //     country: 'USA',
     //     city: 'California',
     //   },
     // },
   ],
+  pageSize: 5,
+  totalUsersCount: 19,
+  currentPage: 2,
 };
 
 const usersReducer = (state = initialState, action) => {

@@ -4,17 +4,18 @@ import * as axios from 'axios';
 import userPhoto from './../../assets/images/defaultAvatar.png';
 
 class Users extends React.Component {
-  //if in users-reducer,  users empty - then we add users from server
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios
-        .get('https://social-network.samuraijs.com/api/1.0/users')
-        .then((response) => {
-          console.log(response.data.items);
-          this.props.setUsers(response.data.items);
-        });
-    }
-  };
+  //componentDidMount call once after rendering, then mount data
+  componentDidMount() {
+    //if in users-reducer,  users empty - then we add users from server
+    // if (this.props.users.length === 0) {
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .then((response) => {
+        console.log(response.data.items);
+        this.props.setUsers(response.data.items);
+      });
+    // }
+  }
 
   render() {
     let userItem = this.props.users.map((user) => {
@@ -67,11 +68,37 @@ class Users extends React.Component {
         </div>
       );
     });
-    //'react' draws the button and users
+
+    //calculate the number of pages
+    let pagesCount = Math.ceil(
+      this.props.totalUsersCount / this.props.pageSize
+    );
+
+    let pages = [];
+    //fill the array pages
+    for (let numPage = 1; numPage <= pagesCount; numPage++) {
+      pages.push(numPage);
+    }
+    //'react' draws users
     return (
       <div>
-        <button onClick={this.getUsers}>Get Users from Server</button>
+        <div>
+          <div>
+            {pages.map((page) => {
+              return (
+                <span
+                  className={
+                    this.props.currentPage === page ? styles.selectedPage : ''
+                  }
+                >
+                  {page}
+                </span>
+              );
+            })}
+          </div>
 
+          <div>pages count ({pagesCount})</div>
+        </div>
         <div>{userItem}</div>
       </div>
     );
