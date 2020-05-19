@@ -28,7 +28,14 @@
   border-radius: 50%;
 }
 
+.pageNumber {
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
 .selectedPage {
   color: red;
+  font-size: 20px;
   font-weight: bold;
 }

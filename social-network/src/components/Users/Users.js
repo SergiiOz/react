@@ -9,13 +9,29 @@ class Users extends React.Component {
     //if in users-reducer,  users empty - then we add users from server
     // if (this.props.users.length === 0) {
     axios
-      .get('https://social-network.samuraijs.com/api/1.0/users')
+      //page - number of portions items; count - page size (how many items well be returned in response)
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
       .then((response) => {
         console.log(response.data.items);
         this.props.setUsers(response.data.items);
       });
     // }
   }
+
+  onPageChange = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    axios
+      //page - number of portions items; count - page size (how many items well be returned in response)
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+      )
+      .then((response) => {
+        console.log(response.data.items);
+        this.props.setUsers(response.data.items);
+      });
+  };
 
   render() {
     let userItem = this.props.users.map((user) => {
@@ -87,9 +103,15 @@ class Users extends React.Component {
             {pages.map((page) => {
               return (
                 <span
-                  className={
-                    this.props.currentPage === page ? styles.selectedPage : ''
-                  }
+                  className={`${styles.pageNumber} ${
+                    this.props.currentPage === page
+                      ? styles.selectedPage
+                      : styles.pageNumber
+                  }`}
+                  //call onPageChange and pass page
+                  onClick={() => {
+                    this.onPageChange(page);
+                  }}
                 >
                   {page}
                 </span>

@@ -1,6 +1,7 @@
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 const initialState = {
   users: [
@@ -43,7 +44,7 @@ const initialState = {
   ],
   pageSize: 5,
   totalUsersCount: 19,
-  currentPage: 2,
+  currentPage: 1,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -74,8 +75,11 @@ const usersReducer = (state = initialState, action) => {
       };
     case SET_USERS:
       //изначально масив буде пустой и его нужно будет заполнить обьектами, которые прийдут с сервера
-      //если масив изначально не пустой, то соеденяем два мссива сатрый и новый который прийдее в 'action'
-      return { ...state, users: [...state.users, ...action.users] };
+      //если масив изначально не пустой, то перезатираем массива старый новым который прийдее в 'action'
+      return { ...state, users: action.users };
+    case SET_CURRENT_PAGE:
+      //set curent page in Users
+      return { ...state, currentPage: action.currentPage };
     default:
       return state;
   }
@@ -101,6 +105,13 @@ export const setUsersAC = (users) => {
   return {
     type: SET_USERS,
     users,
+  };
+};
+
+export const setCurentPageAC = (currentPage) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    currentPage,
   };
 };
 
