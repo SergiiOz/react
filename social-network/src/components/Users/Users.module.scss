@@ -28,6 +28,12 @@
   border-radius: 50%;
 }
 
+.pagination {
+  max-width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .pageNumber {
   cursor: pointer;
   font-size: 18px;

@@ -2,6 +2,7 @@ export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 const initialState = {
   users: [
@@ -80,6 +81,9 @@ const usersReducer = (state = initialState, action) => {
     case SET_CURRENT_PAGE:
       //set curent page in Users
       return { ...state, currentPage: action.currentPage };
+    case SET_TOTAL_USERS_COUNT:
+      //set total users count
+      return { ...state, totalUsersCount: action.totalCount };
     default:
       return state;
   }
@@ -112,6 +116,13 @@ export const setCurentPageAC = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage,
+  };
+};
+
+export const setTotalUsersCountAC = (totalCount) => {
+  return {
+    type: SET_TOTAL_USERS_COUNT,
+    totalCount,
   };
 };
 

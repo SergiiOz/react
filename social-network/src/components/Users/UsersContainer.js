@@ -4,8 +4,9 @@ import {
   unfollowAC,
   setUsersAC,
   setCurentPageAC,
+  setTotalUsersCountAC,
 } from '../../redux/users-reducer';
-import Users from './Users';
+import UsersApi from './UsersApi';
 
 let mapStateToProps = (state) => {
   return {
@@ -30,6 +31,9 @@ let mapDispatchToProps = (dispatch) => {
     setCurrentPage: (pageNumber) => {
       dispatch(setCurentPageAC(pageNumber));
     },
+    setTotalUsersCount: (totalCount) => {
+      dispatch(setTotalUsersCountAC(totalCount));
+    },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersApi);
