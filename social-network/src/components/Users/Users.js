@@ -20,7 +20,7 @@ const Users = (props) => {
             {user.followed ? (
               <button
                 onClick={() => {
-                  this.props.unfollow(user.id);
+                  props.unfollow(user.id);
                 }}
               >
                 Follow
@@ -28,7 +28,7 @@ const Users = (props) => {
             ) : (
               <button
                 onClick={() => {
-                  this.props.follow(user.id);
+                  props.follow(user.id);
                 }}
               >
                 Unfollow
@@ -75,7 +75,7 @@ const Users = (props) => {
                 }`}
                 //call onPageChange and pass page
                 onClick={() => {
-                  this.onPageChange(page);
+                  props.onPageChange(page);
                 }}
               >
                 {page}
