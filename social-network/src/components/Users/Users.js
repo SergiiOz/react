@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './Users.module.scss';
 import userPhoto from './../../assets/images/defaultAvatar.png';
+import Preloader from '../common/Preloader/Preloader';
 
 const Users = (props) => {
+  debugger
   let userItem = props.users.map((user) => {
     return (
       <div className={styles.usersWrapper} key={user.id}>
@@ -86,6 +88,7 @@ const Users = (props) => {
 
         <div>pages count ({pagesCount})</div>
       </div>
+      {props.isFetching === true ? <Preloader /> : null}
       <div>{userItem}</div>
     </div>
   );
