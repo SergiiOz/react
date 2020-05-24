@@ -1,14 +1,16 @@
-export const ADD_POST = "ADD-POST";
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+export const ADD_POST = 'ADD-POST';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
   postsData: [
-    { id: 1, message: "Are you here first time?", likesCount: 24 },
+    { id: 1, message: 'Are you here first time?', likesCount: 24 },
     { id: 2, message: "It's my first post.", likesCount: 15 },
-    { id: 3, message: "So far...", likesCount: 9 },
-    { id: 4, message: "I have done it.", likesCount: 19 },
+    { id: 3, message: 'So far...', likesCount: 9 },
+    { id: 4, message: 'I have done it.', likesCount: 19 },
   ],
-  newPostText: "default post text",
+  newPostText: 'default post text',
+  profile: null,
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -43,10 +45,14 @@ const profilePageReducer = (state = initialState, action) => {
       //add new message to array pastsData
       newState.postsData.push(newMessage);
       //after added new message in state we clear textarea in redux/state.js
-      newState.newPostText = "";
+      newState.newPostText = '';
       //   break;
       return newState;
     //   }
+
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile };
+
     default:
       return state;
   }
@@ -63,6 +69,13 @@ export const updateNewPostTextActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
     newText: text,
+  };
+};
+
+export const setUserProfile = (profile) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile: profile,
   };
 };
 

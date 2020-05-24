@@ -2,20 +2,25 @@ import React from 'react';
 import styles from './Users.module.scss';
 import userPhoto from './../../assets/images/defaultAvatar.png';
 import Preloader from '../common/Preloader/Preloader';
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
-  debugger
+  debugger;
   let userItem = props.users.map((user) => {
     return (
       <div className={styles.usersWrapper} key={user.id}>
         <div className={styles.user}>
           <div className={styles.avatarBlock}>
             <div className={styles.avatarWrapper}>
-              <img
-                className={styles.avatar}
-                src={user.photos.small != null ? user.photos.small : userPhoto}
-                alt="img"
-              />
+              <NavLink to={'/profile/' + user.id}>
+                <img
+                  className={styles.avatar}
+                  src={
+                    user.photos.small != null ? user.photos.small : userPhoto
+                  }
+                  alt="img"
+                />
+              </NavLink>
             </div>
 
             {/* buttons */}

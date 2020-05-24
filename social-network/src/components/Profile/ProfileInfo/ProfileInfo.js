@@ -1,18 +1,24 @@
-import React from "react";
-import styles from "./ProfileInfo.module.scss";
+import React from 'react';
+import styles from './ProfileInfo.module.scss';
+import Preloader from '../../common/Preloader/Preloader';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Preloader />;
+  }
   return (
-    <div className={styles["profile__info"]}>
-      <div className={styles["profile__avatar"]}>
+    <div className={styles['profile__info']}>
+      <div className={styles['profile__avatar']}>
         <img
           className={styles.avatar}
-          src="https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg"
+          src={props.profile.photos.small}
           alt="profile"
         />
       </div>
 
-      <div className={styles["profile__description"]}>Description</div>
+      <div className={styles['profile__description']}>
+        {props.profile.fullName}
+      </div>
     </div>
   );
 };

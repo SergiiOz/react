@@ -1,29 +1,29 @@
-import React from "react";
-import styles from "./Profile.module.scss";
+import React from 'react';
+import styles from './Profile.module.scss';
 // import MyPosts from "./MyPosts/MyPosts";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
   return (
     <div>
-      <div className={styles["profile__poster"]}>
+      <div className={styles['profile__poster']}>
         <img
           src="https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
           alt="poster"
         />
       </div>
-      <div className={styles["profile__wrapper"]}>
+      <div className={styles['profile__wrapper']}>
         {/* Profile */}
-        <ProfileInfo />
+        <ProfileInfo profile={props.profile} />
 
         {/* Post form */}
         <MyPostsContainer
-          store={props.store}
-          // state={props.state}
-          // dispatch={props.dispatch}
-          // addPost={props.addPost}
-          // updateNewPostText={props.updateNewPostText}
+        // store={props.store}
+        // state={props.state}
+        // dispatch={props.dispatch}
+        // addPost={props.addPost}
+        // updateNewPostText={props.updateNewPostText}
         />
       </div>
     </div>
