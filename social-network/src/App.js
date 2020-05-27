@@ -26,7 +26,8 @@ const App = (props) => {
 
         {/* PROFILE  we use construction with 'render' and arrow function, for pass props to component*/}
         <Route
-          path="/profile"
+          //get params userId
+          path="/profile/:userId?"
           render={() => (
             <ProfileContainer
             // store={props.store}

@@ -5,13 +5,13 @@ import Preloader from '../common/Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
-  debugger;
   let userItem = props.users.map((user) => {
     return (
       <div className={styles.usersWrapper} key={user.id}>
         <div className={styles.user}>
           <div className={styles.avatarBlock}>
             <div className={styles.avatarWrapper}>
+              {/* if click to this img user - we display user profile info in Profile  */}
               <NavLink to={'/profile/' + user.id}>
                 <img
                   className={styles.avatar}
