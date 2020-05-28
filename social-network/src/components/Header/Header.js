@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className={styles['header']}>
       <div className={styles.headerSection}>
@@ -15,7 +15,7 @@ const Header = () => {
         <h3>"Chain of people"</h3>
       </div>
       <div className={styles.authBlock}>
-        <NavLink to={'/login'}>LogIn</NavLink>
+        {props.isAuth ? props.login : <NavLink to={'/login'}>LogIn</NavLink>}
       </div>
     </header>
   );
