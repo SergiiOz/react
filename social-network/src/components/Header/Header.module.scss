@@ -2,10 +2,18 @@
   grid-area: header;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   border: 1px solid green;
   border-radius: 5px;
+  padding: 5px;
 
   &__logo {
     max-width: 50px;
   }
+}
+
+.headerSection {
+  display: flex;
+  align-items: center;
 }

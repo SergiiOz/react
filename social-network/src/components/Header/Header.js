@@ -1,16 +1,22 @@
-import React from "react";
-import styles from "./Header.module.scss";
+import React from 'react';
+import styles from './Header.module.scss';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className={styles["header"]}>
-      <div className={styles["header__logo"]}>
-        <img
-          src="https://adnas.com/wp-content/uploads/2016/06/supply-chain.png"
-          alt="logo social network"
-        />
+    <header className={styles['header']}>
+      <div className={styles.headerSection}>
+        <div className={styles['header__logo']}>
+          <img
+            src="https://adnas.com/wp-content/uploads/2016/06/supply-chain.png"
+            alt="logo social network"
+          />
+        </div>
+        <h3>"Chain of people"</h3>
       </div>
-      <h3>"Chain of people"</h3>
+      <div className={styles.authBlock}>
+        <NavLink to={'/login'}>LogIn</NavLink>
+      </div>
     </header>
   );
 };

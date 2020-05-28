@@ -15,10 +15,9 @@ class ProfileContainer extends React.Component {
     //we get profile info
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-
       .then((response) => {
         console.log(response.data);
-        //set info to profile with id 2 in profilePage
+        //set info to profile with id in profilePage
         this.props.setUserProfile(response.data);
       });
   }
@@ -32,6 +31,7 @@ class ProfileContainer extends React.Component {
 }
 
 //create new component, in this component pass props from withRouter
+//we can get url data like id
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
 let mapStateToProps = (state) => {
