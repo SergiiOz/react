@@ -15,6 +15,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
+        //if we get data then change isAuth to true
         isAuth: true,
       };
     case SET_AUTH_USER_PROFILE:

@@ -3,6 +3,7 @@ import styles from './Users.module.scss';
 import userPhoto from './../../assets/images/defaultAvatar.png';
 import Preloader from '../common/Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
 
 const Users = (props) => {
   let userItem = props.users.map((user) => {
@@ -27,7 +28,21 @@ const Users = (props) => {
             {user.followed ? (
               <button
                 onClick={() => {
-                  props.unfollow(user.id);
+                  axios
+                    .post(
+                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                      {
+                        withCredentials: true,
+                        headers: {
+                          'API-KEY': '32f728f4-5522-41fd-a01e-5b6564edf694',
+                        },
+                      }
+                    )
+                    .then((response) => {
+                      if (response.data.resultCode === 0) {
+                        props.unfollow(user.id);
+                      }
+                    });
                 }}
               >
                 Follow
@@ -35,7 +50,22 @@ const Users = (props) => {
             ) : (
               <button
                 onClick={() => {
-                  props.follow(user.id);
+                  axios
+                    .post(
+                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                      {},
+                      {
+                        withCredentials: true,
+                        headers: {
+                          'API-KEY': '32f728f4-5522-41fd-a01e-5b6564edf694',
+                        },
+                      }
+                    )
+                    .then((response) => {
+                      if (response.data.resultCode === 0) {
+                        props.follow(user.id);
+                      }
+                    });
                 }}
               >
                 Unfollow

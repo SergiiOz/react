@@ -3,7 +3,7 @@ export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 const initialState = {
   users: [
@@ -32,17 +32,6 @@ const initialState = {
     //   },
     // },
     // {
-    //   id: 3,
-    //   followed: true,
-    //   fullName: 'Alex',
-    //   status: "I'm a beck-end developer",
-    //   photoUrl:
-    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR766YSejBCsUF2jottA5FXFTa_TQFmJN1FQdjuy07TQK293wSo&usqp=CAU',
-    //   location: {
-    //     country: 'USA',
-    //     city: 'California',
-    //   },
-    // },
   ],
   pageSize: 5,
   totalUsersCount: 19,
@@ -86,9 +75,9 @@ const usersReducer = (state = initialState, action) => {
     case SET_TOTAL_USERS_COUNT:
       //set total users count
       return { ...state, totalUsersCount: action.totalCount };
-      case TOGGLE_IS_FETCHING:
-        //change toggle isFetching
-        return { ...state, isFetching: action.isFetching };
+    case TOGGLE_IS_FETCHING:
+      //change toggle isFetching
+      return { ...state, isFetching: action.isFetching };
     default:
       return state;
   }
