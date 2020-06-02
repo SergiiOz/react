@@ -29,11 +29,13 @@ const Users = (props) => {
               <button
                 onClick={() => {
                   axios
-                    .post(
+                    .delete(
                       `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
                       {
+                        //this means that we are logged in
                         withCredentials: true,
                         headers: {
+                          //api key we take from account social-network
                           'API-KEY': '32f728f4-5522-41fd-a01e-5b6564edf694',
                         },
                       }
@@ -45,7 +47,7 @@ const Users = (props) => {
                     });
                 }}
               >
-                Follow
+                Unfollow
               </button>
             ) : (
               <button
@@ -55,6 +57,7 @@ const Users = (props) => {
                       `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
                       {},
                       {
+                        //this means that we are logged in
                         withCredentials: true,
                         headers: {
                           'API-KEY': '32f728f4-5522-41fd-a01e-5b6564edf694',
@@ -68,7 +71,7 @@ const Users = (props) => {
                     });
                 }}
               >
-                Unfollow
+                Follow
               </button>
             )}
           </div>
