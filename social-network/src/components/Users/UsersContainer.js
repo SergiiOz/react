@@ -10,7 +10,7 @@ import {
 } from '../../redux/users-reducer';
 // import * as axios from 'axios';
 import Users from './Users';
-import { getUsers } from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
   //componentDidMount call once after rendering, then mount data
@@ -27,12 +27,14 @@ class UsersContainer extends React.Component {
     //   }
     // );
 
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.setToggleIsFetching(false);
-      console.log(data);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
+        this.props.setToggleIsFetching(false);
+        console.log(data);
+        this.props.setUsers(data.items);
+        this.props.setTotalUsersCount(data.totalCount);
+      });
     // }
   }
 
@@ -44,7 +46,7 @@ class UsersContainer extends React.Component {
     //   .get(
     //     `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
     //   )
-    getUsers(pageNumber, this.props.pageSize).then((data) => {
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
       this.props.setToggleIsFetching(false);
       console.log(data.items);
       this.props.setUsers(data.items);
