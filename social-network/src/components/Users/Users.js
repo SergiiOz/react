@@ -28,12 +28,20 @@ const Users = (props) => {
             {/* buttons */}
             {user.followed ? (
               <button
+                //if followingInProgress == true - button disabled when clicked button and send request (not to send 2 times request)
+                disabled={props.followingInProgress.some(
+                  (id) => id === user.Id
+                )}
                 onClick={() => {
-                  //axios.delete carried out to api.ja in object usersAPI method unfollowUser
+                  //function change state -button disabled when send request
+                  props.toggleFollowInProgress(true, user.id);
+                  //axios.delete carried out to api.js in object usersAPI method unfollowUser
                   usersAPI.unfollowUser(user.id).then((data) => {
                     if (data.resultCode === 0) {
                       props.unfollow(user.id);
                     }
+                    //function change state -button turned on when come response
+                    props.toggleFollowInProgress(false, user.id);
                   });
                   // axios
                   //   .delete(
@@ -58,12 +66,20 @@ const Users = (props) => {
               </button>
             ) : (
               <button
+                //if followingInProgress == true - button disabled when clicked button and send request (not to send 2 times request)
+                disabled={props.followingInProgress.some(
+                  (id) => id === user.id
+                )}
                 onClick={() => {
-                  //axios.post carried out to api.ja in object usersAPI method followUser
+                  //function change state - button disabled when send request
+                  props.toggleFollowInProgress(true, user.id);
+                  //axios.post carried out to api.js in object usersAPI method followUser
                   usersAPI.followUser(user.id).then((data) => {
                     if (data.resultCode === 0) {
                       props.follow(user.id);
                     }
+                    //function change state - button turned on when come response
+                    props.toggleFollowInProgress(false, user.id);
                   });
                   // axios
                   //   .post(

@@ -4,6 +4,7 @@ export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+export const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS';
 
 const initialState = {
   users: [
@@ -37,6 +38,8 @@ const initialState = {
   totalUsersCount: 19,
   currentPage: 1,
   isFetching: false,
+  //using for disable button follow/unfollow when fetching data
+  followingInProgress: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -78,6 +81,14 @@ const usersReducer = (state = initialState, action) => {
     case TOGGLE_IS_FETCHING:
       //change toggle isFetching
       return { ...state, isFetching: action.isFetching };
+    case TOGGLE_FOLLOWING_IN_PROGRESS:
+      //change toggle followingInProgress
+      return {
+        ...state,
+        followingInProgress: action.isFetching
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id !== action.userId),
+      };
     default:
       return state;
   }
@@ -124,6 +135,13 @@ export const setToggleIsFetchingAC = (isFetching) => {
   return {
     type: TOGGLE_IS_FETCHING,
     isFetching,
+  };
+};
+export const toggleFollowInProgressAC = (isFetching, userId) => {
+  return {
+    type: TOGGLE_FOLLOWING_IN_PROGRESS,
+    isFetching,
+    userId,
   };
 };
 
