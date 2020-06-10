@@ -30,7 +30,7 @@ const Users = (props) => {
               <button
                 //if followingInProgress == true - button disabled when clicked button and send request (not to send 2 times request)
                 disabled={props.followingInProgress.some(
-                  (id) => id === user.Id
+                  (id) => id === user.id
                 )}
                 onClick={() => {
                   //function change state -button disabled when send request
