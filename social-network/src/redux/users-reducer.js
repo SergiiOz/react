@@ -1,3 +1,4 @@
+import { usersAPI } from './../api/api';
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
@@ -142,6 +143,20 @@ export const toggleFollowInProgressAC = (isFetching, userId) => {
     type: TOGGLE_FOLLOWING_IN_PROGRESS,
     isFetching,
     userId,
+  };
+};
+
+//redux-thunk
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingAC(true));
+
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(setToggleIsFetchingAC(false));
+      console.log(data);
+      dispatch(setUsersAC(data.items));
+      dispatch(setTotalUsersCountAC(data.totalCount));
+    });
   };
 };
 

@@ -1,9 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import profilePageReducer from './profile-reducer';
 import dialogsPageReducer from './dialogs-reducer';
 import sideBarReducer from './sidebar-reducer';
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
+import thunkMiddleware from 'redux-thunk';
 
 let rootReducer = combineReducers({
   // our state
@@ -14,7 +15,8 @@ let rootReducer = combineReducers({
   auth: authReducer,
 });
 
-let store = createStore(rootReducer);
+//added applyMiddleware with thunkMiddleware for work with thunk creators in reducer
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 //it for display info in console
 //example write in console: console.log(store.getState())
