@@ -38,3 +38,15 @@ export const usersAPI = {
       });
   },
 };
+
+//ProfileContainer
+export const profileAPI = {
+  getUsersToProfile(userId) {
+    return instanceAxios
+    .get(baseURL + `profile/${userId}`)
+    .then((response)=>{
+      return response.data
+    }) 
+  }
+}
+
