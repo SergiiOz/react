@@ -146,7 +146,7 @@ export const toggleFollowInProgressAC = (isFetching, userId) => {
   };
 };
 
-//redux-thunk
+//redux-thunk thunkCreators
 export const getUsersThunkCreator = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setToggleIsFetchingAC(true));
@@ -156,6 +156,36 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
       console.log(data);
       dispatch(setUsersAC(data.items));
       dispatch(setTotalUsersCountAC(data.totalCount));
+    });
+  };
+};
+
+export const followThunkCreator = (userId) => {
+  return (dispatch) => {
+    //function change state - button disabled when send request
+    dispatch(toggleFollowInProgressAC(true, userId));
+    //axios.post carried out to api.js in object usersAPI method followUser
+    usersAPI.followUser(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followAC(userId));
+      }
+      //function change state - button turned on when come response
+      dispatch(toggleFollowInProgressAC(false, userId));
+    });
+  };
+};
+
+export const unFollowThunkCreator = (userId) => {
+  return (dispatch) => {
+    //function change state - button disabled when send request
+    dispatch(toggleFollowInProgressAC(true, userId));
+    //axios.delete carried out to api.js in object usersAPI method unfollowUser
+    usersAPI.unFollowUser(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowAC(userId));
+      }
+      //function change state - button turned on when come response
+      dispatch(toggleFollowInProgressAC(false, userId));
     });
   };
 };

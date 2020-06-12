@@ -30,7 +30,7 @@ export const usersAPI = {
       });
   },
 
-  unfollowUser(userId) {
+  unFollowUser(userId) {
     return instanceAxios
       .delete(baseURL + `follow/${userId}`)
       .then((response) => {

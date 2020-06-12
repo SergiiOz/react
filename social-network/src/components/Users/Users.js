@@ -4,7 +4,7 @@ import userPhoto from './../../assets/images/defaultAvatar.png';
 import Preloader from '../common/Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 // import * as axios from 'axios';
-import { usersAPI } from '../../api/api';
+// import { usersAPI } from '../../api/api';
 
 const Users = (props) => {
   let userItem = props.users.map((user) => {
@@ -33,16 +33,21 @@ const Users = (props) => {
                   (id) => id === user.id
                 )}
                 onClick={() => {
-                  //function change state -button disabled when send request
-                  props.toggleFollowInProgress(true, user.id);
-                  //axios.delete carried out to api.js in object usersAPI method unfollowUser
-                  usersAPI.unfollowUser(user.id).then((data) => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(user.id);
-                    }
-                    //function change state -button turned on when come response
-                    props.toggleFollowInProgress(false, user.id);
-                  });
+                  props.unfollow(user.id);
+
+                  // -- was second step and then refactoring --
+                  // //function change state -button disabled when send request
+                  // props.toggleFollowInProgress(true, user.id);
+                  // //axios.delete carried out to api.js in object usersAPI method unfollowUser
+                  // usersAPI.unFollowUser(user.id).then((data) => {
+                  //   if (data.resultCode === 0) {
+                  //     props.unfollow(user.id);
+                  //   }
+                  //   //function change state -button turned on when come response
+                  //   props.toggleFollowInProgress(false, user.id);
+                  // });
+
+                  // -- was first step and then refactoring --
                   // axios
                   //   .delete(
                   //     `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -71,16 +76,21 @@ const Users = (props) => {
                   (id) => id === user.id
                 )}
                 onClick={() => {
-                  //function change state - button disabled when send request
-                  props.toggleFollowInProgress(true, user.id);
-                  //axios.post carried out to api.js in object usersAPI method followUser
-                  usersAPI.followUser(user.id).then((data) => {
-                    if (data.resultCode === 0) {
-                      props.follow(user.id);
-                    }
-                    //function change state - button turned on when come response
-                    props.toggleFollowInProgress(false, user.id);
-                  });
+                  props.follow(user.id);
+
+                  // -- was second step and then refactoring --
+                  // //function change state - button disabled when send request
+                  // props.toggleFollowInProgress(true, user.id);
+                  // //axios.post carried out to api.js in object usersAPI method followUser
+                  // usersAPI.followUser(user.id).then((data) => {
+                  //   if (data.resultCode === 0) {
+                  //     props.follow(user.id);
+                  //   }
+                  //   //function change state - button turned on when come response
+                  //   props.toggleFollowInProgress(false, user.id);
+                  // });
+
+                  // -- was first step and then refactoring --
                   // axios
                   //   .post(
                   //     `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
