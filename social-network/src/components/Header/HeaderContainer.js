@@ -1,43 +1,47 @@
 import React from 'react';
 import Header from './Header';
-import * as axios from 'axios';
+// import * as axios from 'axios';
 import { connect } from 'react-redux';
 import {
-  setAuthUserData,
-  setAuthUserProfile,
+  // setAuthUserData,
+  // setAuthUserProfile,
+  setAuthUserDataThunkCreator,
 } from './../../redux/auth-reducer';
+// import { authAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    //we get profile info
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        // console.log(response.data);
-        if (response.data.resultCode === 0) {
-          let { id, email, login } = response.data.data;
-          this.props.setAuthUserData(id, email, login);
-          // this.props.setAuthUserData(
-          //   response.data.data.id,
-          //   response.data.data.email,
-          //   response.data.data.login
-          // );
-        }
+    // axios
+    //   .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+    //     withCredentials: true,
+    //   })
 
-        if (this.props.isAuth) {
-          axios
-            .get(
-              `https://social-network.samuraijs.com/api/1.0/profile/${this.props.userId}`
-            )
-            .then((response) => {
-              console.log(response.data);
-              //set info to profile with id in profilePage
-              // this.props.setUserProfile(response.data);
-            });
-        }
-      });
+    //we get profile info
+    this.props.setAuthUserData();
+    // authAPI.me().then((response) => {
+    //   // console.log(response.data);
+    //   if (response.data.resultCode === 0) {
+    //     let { id, email, login } = response.data.data;
+    //     this.props.setAuthUserData(id, email, login);
+    //     // this.props.setAuthUserData(
+    //     //   response.data.data.id,
+    //     //   response.data.data.email,
+    //     //   response.data.data.login
+    //     // );
+    //   }
+
+    // if (this.props.isAuth) {
+    //   axios
+    //     .get(
+    //       `https://social-network.samuraijs.com/api/1.0/profile/${this.props.userId}`
+    //     )
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       //set info to profile with id in profilePage
+    //       // this.props.setUserProfile(response.data);
+    //     });
+    // }
+    // });
   }
 
   render() {
@@ -53,7 +57,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  setAuthUserData,
-  setAuthUserProfile,
-})(HeaderContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAuthUserData: () => {
+      dispatch(setAuthUserDataThunkCreator());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  //   {
+  //   setAuthUserData,
+  //   setAuthUserProfile,
+  // }
+)(HeaderContainer);

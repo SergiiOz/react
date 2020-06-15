@@ -11,6 +11,7 @@ const instanceAxios = axios.create({
   },
 });
 
+//-- Users --
 //create object with methods and this methods return instance axios
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
@@ -39,14 +40,19 @@ export const usersAPI = {
   },
 };
 
-//ProfileContainer
+//-- ProfileContainer ---
 export const profileAPI = {
   getUsersToProfile(userId) {
-    return instanceAxios
-    .get(baseURL + `profile/${userId}`)
-    .then((response)=>{
-      return response.data
-    }) 
-  }
-}
+    return instanceAxios.get(baseURL + `profile/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
+};
 
+//HeaderContainer
+
+export const authAPI = {
+  me() {
+    return instanceAxios.get(baseURL + `auth/me`);
+  },
+};
