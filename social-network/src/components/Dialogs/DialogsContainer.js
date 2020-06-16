@@ -5,14 +5,16 @@
 import {
   addMessageActionCreator,
   updateNewMessageTextActionCreator,
-} from "../../redux/dialogs-reducer";
-import Dialogs from "./Dialogs";
-import { connect } from "react-redux";
+} from '../../redux/dialogs-reducer';
+import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
 let mapStateToProps = (state) => {
   return {
     //pass dialogsPage to component 'Dialogs' in props
     dialogsPage: state.dialogsPage,
+    //if auth on server true or false
+    isAuth: state.auth.isAuth,
   };
 };
 

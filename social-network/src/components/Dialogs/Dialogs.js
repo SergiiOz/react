@@ -1,7 +1,8 @@
-import React from "react";
-import styles from "./Dialogs.module.scss";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import React from 'react';
+import styles from './Dialogs.module.scss';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
+import { Redirect } from 'react-router-dom';
 // import {
 //   addMessageActionCreator,
 //   updateNewMessageTextActionCreator,
@@ -54,6 +55,9 @@ const Dialogs = (props) => {
     // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
   };
 
+  //Redirect to LOGIN if we don't auth on server
+  if (props.isAuth === true) return <Redirect to="/login" />;
+
   return (
     <div className={styles.dialogsWrapper}>
       <h2 className={styles.title}>Dialogs</h2>
@@ -76,13 +80,13 @@ const Dialogs = (props) => {
       <button onClick={onAddMessageFromTextArea}>Add post</button>
 
       <div className={styles.content}>
-        <ul className={styles["dialogs-list"]}>
+        <ul className={styles['dialogs-list']}>
           {/* <DialogItem id="1" name="John" />
           <DialogItem id="3" name="Serg" /> */}
           {dialogsElement}
         </ul>
 
-        <ul className={styles["messages-list"]}>
+        <ul className={styles['messages-list']}>
           {/* <Message message="How are you" />
           <Message message="Hi!!" /> */}
           {messagesElement}
