@@ -8,6 +8,7 @@ import {
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 let mapStateToProps = (state) => {
   return {
@@ -30,6 +31,14 @@ let mapDispatchToProps = (dispatch) => {
     },
   };
 };
+
+//Redirect to LOGIN if we don't auth on server
+
+// let AuthRedirectComponent = (props) => {
+//   if (this.props.isAuth === false) return <Redirect to="/login" />;
+//   return <Dialogs {...props} />;
+// };
+
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

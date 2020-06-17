@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { Redirect } from 'react-router-dom';
+
 // import {
 //   addMessageActionCreator,
 //   updateNewMessageTextActionCreator,
@@ -54,9 +54,6 @@ const Dialogs = (props) => {
     // });
     // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
   };
-
-  //Redirect to LOGIN if we don't auth on server
-  if (props.isAuth === true) return <Redirect to="/login" />;
 
   return (
     <div className={styles.dialogsWrapper}>
