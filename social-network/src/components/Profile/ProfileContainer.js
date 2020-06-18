@@ -7,6 +7,7 @@ import {
   setUserThunkCreator,
 } from './../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 // import { profileAPI } from '../../api/api';
 
 class ProfileContainer extends React.Component {
@@ -34,13 +35,29 @@ class ProfileContainer extends React.Component {
   }
 }
 
+//hoc 'withAuthRedirect' wrapp ProfileContainer-> make redirect to Login page if user doesn't auth
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+//// -- moved to hoc/withAuthRedirect
+// let mapStateToPropsForRedirect = (state) => {
+//   return {
+//     isAuth: state.auth.isAuth,
+//   };
+// };
+
+// let AuthRedirectComponentWithSecondWrapp = connect(mapStateToPropsForRedirect)(
+//   AuthRedirectComponent
+// );
+
+//=====================================================
 //create new component, in this component pass props from withRouter
 //we can get url data like id
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
 let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
+    // isAuth: state.auth.isAuth,
   };
 };
 

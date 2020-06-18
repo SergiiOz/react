@@ -8,14 +8,15 @@ import {
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+import withAuthRedirect from './../../hoc/withAuthRedirect';
 
 let mapStateToProps = (state) => {
   return {
     //pass dialogsPage to component 'Dialogs' in props
     dialogsPage: state.dialogsPage,
-    //if auth on server true or false
-    isAuth: state.auth.isAuth,
+    //if auth on server true or false -> moved to hoc/withAuthRedirectComponent
+    // isAuth: state.auth.isAuth,
   };
 };
 
@@ -32,14 +33,17 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-//Redirect to LOGIN if we don't auth on server
-
+//hoc 'withAuthRedirect' wrapp Dialogs-> make redirect to Login page if user doesn't auth
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
 // let AuthRedirectComponent = (props) => {
 //   if (this.props.isAuth === false) return <Redirect to="/login" />;
 //   return <Dialogs {...props} />;
 // };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthRedirectComponent);
 
 export default DialogsContainer;
 
