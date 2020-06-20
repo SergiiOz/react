@@ -10,6 +10,7 @@ import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import withAuthRedirect from './../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
   return {
@@ -33,19 +34,28 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-//hoc 'withAuthRedirect' wrapp Dialogs-> make redirect to Login page if user doesn't auth
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
+//--moved to compose()
+//hoc 'withAuthRedirect' wrapp Dialogs -> make redirect to Login page if user doesn't auth
+// let AuthRedirectComponent = withAuthRedirect(Dialogs);
+//===============================================
+// old code -> moved to hoc 'withAuthRedirect'
 // let AuthRedirectComponent = (props) => {
 //   if (this.props.isAuth === false) return <Redirect to="/login" />;
 //   return <Dialogs {...props} />;
 // };
 
-const DialogsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthRedirectComponent);
+//--moved to compose() --
+// const DialogsContainer = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(AuthRedirectComponent);
 
-export default DialogsContainer;
+// export default DialogsContainer;
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect
+)(Dialogs);
 
 // const DialogsContainer = (props) => {
 //   let state = props.store.getState().dialogsPage;

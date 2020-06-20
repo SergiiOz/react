@@ -2,6 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 // import * as axios from 'axios';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import {
   // setUserProfile,
   setUserThunkCreator,
@@ -35,8 +36,9 @@ class ProfileContainer extends React.Component {
   }
 }
 
+// -- moved to compose()
 //hoc 'withAuthRedirect' wrapp ProfileContainer-> make redirect to Login page if user doesn't auth
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 //// -- moved to hoc/withAuthRedirect
 // let mapStateToPropsForRedirect = (state) => {
@@ -45,6 +47,7 @@ let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 //   };
 // };
 
+// -- moved to compose
 // let AuthRedirectComponentWithSecondWrapp = connect(mapStateToPropsForRedirect)(
 //   AuthRedirectComponent
 // );
@@ -52,7 +55,7 @@ let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 //=====================================================
 //create new component, in this component pass props from withRouter
 //we can get url data like id
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
 let mapStateToProps = (state) => {
   return {
@@ -69,7 +72,15 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(WithUrlDataContainerComponent);
+
+// export default ProfileContainer;
