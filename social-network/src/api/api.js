@@ -47,6 +47,14 @@ export const profileAPI = {
       return response.data;
     });
   },
+
+  getUserStatus(userId) {
+    return instanceAxios
+      .get(baseURL + `profile/status/${userId}`)
+      .then((response) => {
+        return response;
+      });
+  },
 };
 
 //HeaderContainer

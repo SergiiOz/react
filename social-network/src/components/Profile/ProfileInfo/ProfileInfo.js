@@ -27,7 +27,7 @@ const ProfileInfo = (props) => {
 
           <p>{props.profile.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
         </div>
-        <ProfileStatus status="I'm working with vscode" />
+        <ProfileStatus status={props.status} />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import {
   // setUserProfile,
   setUserThunkCreator,
+  getUserSatusThunkCreator,
 } from './../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
@@ -26,11 +27,17 @@ class ProfileContainer extends React.Component {
     //   //set info to profile with id in profilePage
     //   this.props.setUserProfile(data);
     // });
+
+    this.props.getUserStatus(userId);
   }
   render() {
     return (
       <div>
-        <Profile {...this.props} props={this.profile} />
+        <Profile
+          {...this.props}
+          props={this.props.profile}
+          status={this.props.status}
+        />
       </div>
     );
   }
@@ -61,6 +68,7 @@ let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
     // isAuth: state.auth.isAuth,
+    status: state.profilePage.status,
   };
 };
 
@@ -68,6 +76,9 @@ let mapDispatchToProps = (dispatch) => {
   return {
     setUserProfile: (userId) => {
       dispatch(setUserThunkCreator(userId));
+    },
+    getUserStatus: (userId) => {
+      dispatch(getUserSatusThunkCreator(userId));
     },
   };
 };

@@ -2,6 +2,7 @@ import { profileAPI } from './../api/api';
 export const ADD_POST = 'ADD-POST';
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const SET_USER_STATUS = 'SET_USER_STATUS';
 
 const initialState = {
   postsData: [
@@ -12,6 +13,7 @@ const initialState = {
   ],
   newPostText: 'default post text',
   profile: null,
+  status: '',
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -54,6 +56,9 @@ const profilePageReducer = (state = initialState, action) => {
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile };
 
+    case SET_USER_STATUS:
+      return { ...state, status: action.status };
+
     default:
       return state;
   }
@@ -80,12 +85,29 @@ export const setUserProfile = (profile) => {
   };
 };
 
+export const setUserStatus = (status) => {
+  return {
+    type: SET_USER_STATUS,
+    status,
+  };
+};
+
 export const setUserThunkCreator = (userId) => {
   return (dispatch) => {
     profileAPI.getUsersToProfile(userId).then((data) => {
       console.log(data);
       //set info to profile with id in profilePage
       dispatch(setUserProfile(data));
+    });
+  };
+};
+
+export const getUserSatusThunkCreator = (userId) => {
+  return (dispatch) => {
+    profileAPI.getUserStatus(userId).then((response) => {
+      console.log(response);
+      //in response.data -> text of status
+      dispatch(setUserStatus(response.data));
     });
   };
 };
