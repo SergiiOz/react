@@ -15,7 +15,11 @@ const Profile = (props) => {
       </div>
       <div className={styles['profile__wrapper']}>
         {/* Profile */}
-        <ProfileInfo profile={props.profile} status={props.status} />
+        <ProfileInfo
+          profile={props.profile}
+          status={props.status}
+          updateUserStatus={props.updateUserStatus}
+        />
 
         {/* Post form */}
         <MyPostsContainer

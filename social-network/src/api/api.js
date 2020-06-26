@@ -55,6 +55,14 @@ export const profileAPI = {
         return response;
       });
   },
+
+  updateUserStatus(status) {
+    return instanceAxios
+      .put(baseURL + `profile/status`, { status: status })
+      .then((response) => {
+        return response;
+      });
+  },
 };
 
 //HeaderContainer

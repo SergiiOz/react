@@ -112,4 +112,16 @@ export const getUserSatusThunkCreator = (userId) => {
   };
 };
 
+export const updateUserSatusThunkCreator = (status) => {
+  return (dispatch) => {
+    profileAPI.updateUserStatus(status).then((response) => {
+      console.log(response);
+      if (response.data.resultCode === 0) {
+        //in response.data -> text of status
+        dispatch(setUserStatus(status));
+      }
+    });
+  };
+};
+
 export default profilePageReducer;
