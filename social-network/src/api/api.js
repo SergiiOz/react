@@ -66,9 +66,16 @@ export const profileAPI = {
 };
 
 //HeaderContainer
-
 export const authAPI = {
   me() {
     return instanceAxios.get(baseURL + `auth/me`);
+  },
+
+  login(email, password, rememberMe) {
+    return instanceAxios.post(baseURL + `auth/login`, {
+      email: email,
+      password: password,
+      rememberMe: rememberMe,
+    });
   },
 };

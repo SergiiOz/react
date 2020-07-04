@@ -1,7 +1,6 @@
-import React from 'react';
-import styles from './MyPosts.module.scss';
-import Post from './Post/Post';
-import PostReduxForm from './PostReduxForm';
+import React from "react";
+import styles from "./MyPosts.module.scss";
+import Post from "./Post/Post";
 // import {
 //   addPostActionCreator,
 //   updateNewPostTextActionCreator,
@@ -38,13 +37,6 @@ const MyPosts = (props) => {
     // props.dispatch(updateNewPostTextActionCreator(text));
     props.updateNewPostText(text);
   };
-
-  //test function for Redux form
-  let onAddPostReduxForm = (formData) => {
-    // console.log(formData.newPostText);
-    props.updateNewPostText(formData.newPostText);
-    props.addPost();
-  };
   return (
     <div>
       <div className={styles.text}>
@@ -59,10 +51,7 @@ const MyPosts = (props) => {
         <br />
         <button onClick={onAddNewPost}>Add post</button>
       </div>
-      <div>
-        <span>test Redux form</span>
-        <PostReduxForm onSubmit={onAddPostReduxForm} />
-      </div>
+
       {/* posts */}
       <div>
         {/* <Post message="Are you here first time?" likesCount="24" />

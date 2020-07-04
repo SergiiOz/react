@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import MessageReduxForm from './MessageReduxForm';
 
 // import {
 //   addMessageActionCreator,
@@ -56,13 +55,6 @@ const Dialogs = (props) => {
     // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
   };
 
-  //test function for Redux form
-  let onAddMessageReduxForm = (formData) => {
-    // console.log(formData);
-    props.updateNewMessageText(formData.newMessageText);
-    props.addMessage();
-  };
-
   return (
     <div className={styles.dialogsWrapper}>
       <h2 className={styles.title}>Dialogs</h2>
@@ -83,11 +75,6 @@ const Dialogs = (props) => {
       ></textarea>
       <br />
       <button onClick={onAddMessageFromTextArea}>Add post</button>
-
-      <div>
-        <span>text Redux form</span>
-        <MessageReduxForm onSubmit={onAddMessageReduxForm} />
-      </div>
 
       <div className={styles.content}>
         <ul className={styles['dialogs-list']}>

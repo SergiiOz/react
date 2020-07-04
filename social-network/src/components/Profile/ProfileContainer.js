@@ -10,7 +10,7 @@ import {
   updateUserSatusThunkCreator,
 } from './../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
-import withAuthRedirect from '../../hoc/withAuthRedirect';
+// import withAuthRedirect from '../../hoc/withAuthRedirect';
 // import { profileAPI } from '../../api/api';
 
 class ProfileContainer extends React.Component {

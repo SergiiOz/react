@@ -3,6 +3,11 @@ import { Field, reduxForm } from 'redux-form';
 
 const LoginForm = (props) => {
   return (
+    //handleSubmit -> this special callBack, redux-form pass for us to props
+    //inside handleSubmit has 3 actions
+    //*event.preventDefault
+    //*get all form data and put them to object
+    //*props.onSubmit(formData)
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field placeholder="Login" name="login" component="input" />

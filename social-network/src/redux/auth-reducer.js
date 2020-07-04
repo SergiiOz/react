@@ -60,4 +60,23 @@ export const setAuthUserDataThunkCreator = () => {
   };
 };
 
+//for Login
+export const setLoginUserThunkCreator = (email, password, rememberMe) => {
+  return (dispatch) => {
+    //we get profile info
+    authAPI.login(email, password, rememberMe).then((response) => {
+      console.log(response.data);
+      if (response.data.resultCode === 0) {
+        // let { id, email, login } = response.data.data;
+        // dispatch(setAuthUserData(id, email, login));
+        // this.props.setAuthUserData(
+        //   response.data.data.id,
+        //   response.data.data.email,
+        //   response.data.data.login
+        // );
+      }
+    });
+  };
+};
+
 export default authReducer;
