@@ -1,11 +1,11 @@
 // import React from "react";
 // import Post from "./Post/Post";
-import MyPosts from "./MyPosts";
+import MyPosts from './MyPosts';
 import {
   addPostActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profile-reducer";
-import { connect } from "react-redux";
+  // updateNewPostTextActionCreator,
+} from '../../../redux/profile-reducer';
+import { connect } from 'react-redux';
 
 // const MyPostsContainer = (props) => {
 //   let state = props.store.getState();
@@ -46,18 +46,18 @@ let mapStateToProps = (state) => {
   return {
     //this data pass to 'MyPosts' in props
     postsData: state.profilePage.postsData,
-    newPostText: state.profilePage.newPostText,
+    // newPostText: state.profilePage.newPostText,
   };
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
     //function pass in 'MyPosts' in props
-    updateNewPostText: (text) => {
-      dispatch(updateNewPostTextActionCreator(text));
-    },
-    addPost: () => {
-      dispatch(addPostActionCreator());
+    // updateNewPostText: (text) => {
+    //   dispatch(updateNewPostTextActionCreator(text));
+    // },
+    addPost: (newPostText) => {
+      dispatch(addPostActionCreator(newPostText));
     },
   };
 };

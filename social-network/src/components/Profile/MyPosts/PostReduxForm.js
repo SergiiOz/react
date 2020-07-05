@@ -12,10 +12,9 @@ const TextareaForm = (props) => {
     </form>
   );
 };
-
 const PostReduxForm = reduxForm({
   // a unique name for the form
-  form: 'newPost',
+  form: 'profileNewPostText',
 })(TextareaForm);
 
 export default PostReduxForm;

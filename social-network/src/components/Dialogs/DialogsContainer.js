@@ -4,7 +4,7 @@
 // import Message from "./Message/Message";
 import {
   addMessageActionCreator,
-  updateNewMessageTextActionCreator,
+  // updateNewMessageTextActionCreator,
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
@@ -24,13 +24,13 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
   return {
     //pass methods to component 'Dialogs' in props
-    addMessage: () => {
-      dispatch(addMessageActionCreator());
+    addMessage: (newMessageText) => {
+      dispatch(addMessageActionCreator(newMessageText));
     },
-    updateNewMessageText: (textFromTextarea) => {
-      let action = updateNewMessageTextActionCreator(textFromTextarea);
-      dispatch(action);
-    },
+    // updateNewMessageText: (textFromTextarea) => {
+    //   let action = updateNewMessageTextActionCreator(textFromTextarea);
+    //   dispatch(action);
+    // },
   };
 };
 

@@ -15,41 +15,41 @@ const MyPosts = (props) => {
   });
 
   //create Ref for get access to DOM element
-  let newPostElement = React.createRef();
+  // let newPostElement = React.createRef();
 
-  function onAddNewPost() {
-    //function from redux/state.js
-    props.addPost();
-    //let action = {type: 'ADD-POST}
-    // props.dispatch(addPostActionCreator());
+  // function onAddNewPost() {
+  //   //function from redux/state.js
+  //   props.addPost();
+  //   //let action = {type: 'ADD-POST}
+  //   // props.dispatch(addPostActionCreator());
 
-    //after get value we clear textarea in redux/state.js
-  }
+  //   //after get value we clear textarea in redux/state.js
+  // }
 
-  let onPostChange = () => {
-    //get value from the element textarea DOM
-    let text = newPostElement.current.value;
-    // console.log(text);
-    // let action = {
-    //   type: "UPDATE-NEW-POST-TEXT",
-    //   newText: text,
-    // };
-    // props.updateNewPostText(text);
-    // props.dispatch(updateNewPostTextActionCreator(text));
-    props.updateNewPostText(text);
-  };
+  // let onPostChange = () => {
+  //get value from the element textarea DOM
+  // let text = newPostElement.current.value;
+  // console.log(text);
+  // let action = {
+  //   type: "UPDATE-NEW-POST-TEXT",
+  //   newText: text,
+  // };
+  // props.updateNewPostText(text);
+  // props.dispatch(updateNewPostTextActionCreator(text));
+  //   props.updateNewPostText(text);
+  // };
 
   //test function for Redux form
   let onAddPostReduxForm = (formData) => {
     // console.log(formData.newPostText);
-    props.updateNewPostText(formData.newPostText);
-    props.addPost();
+    // props.updateNewPostText(formData.newPostText);
+    props.addPost(formData.newPostText);
   };
   return (
     <div>
-      <div className={styles.text}>
+      {/* <div className={styles.text}>
         <h3>My posts:</h3>
-        {/* get value through ref */}
+        get value through ref
         <textarea
           ref={newPostElement}
           onChange={onPostChange}
@@ -58,8 +58,8 @@ const MyPosts = (props) => {
         ></textarea>
         <br />
         <button onClick={onAddNewPost}>Add post</button>
-      </div>
-      <div>
+      </div> */}
+      <div className={styles.text}>
         <span>test Redux form</span>
         <PostReduxForm onSubmit={onAddPostReduxForm} />
       </div>

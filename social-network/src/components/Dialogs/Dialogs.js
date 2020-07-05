@@ -34,39 +34,39 @@ const Dialogs = (props) => {
   //value from refux/store._state
   // let newMessageTextFromState = props.state.newMessageText;
 
-  const onAddMessageFromTextArea = () => {
-    //add message to State
-    props.addMessage();
-    // props.dispatch({ type: "ADD-MESSAGE" });
-    // props.dispatch(addMessageActionCreator());
-    //after get value we clear textarea in redux/state.js
-    //after clear textarea
-    // newMessage.current.value = "";
-  };
+  // const onAddMessageFromTextArea = () => {
+  //   //add message to State
+  //   props.addMessage();
+  //   // props.dispatch({ type: "ADD-MESSAGE" });
+  //   // props.dispatch(addMessageActionCreator());
+  //   //after get value we clear textarea in redux/state.js
+  //   //after clear textarea
+  //   // newMessage.current.value = "";
+  // };
 
-  let onChangeMessageArea = (event) => {
-    //get value from input
-    // let textFromTextarea = newMessage.current.value;
-    let textFromTextarea = event.target.value;
-    props.updateNewMessageText(textFromTextarea);
-    // props.dispatch({
-    //   type: "UPDATE-NEW-MESSAGE-TEXT",
-    //   textMessage: textFromTextarea,
-    // });
-    // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
-  };
+  // let onChangeMessageArea = (event) => {
+  //   //get value from input
+  //   // let textFromTextarea = newMessage.current.value;
+  //   let textFromTextarea = event.target.value;
+  //   props.updateNewMessageText(textFromTextarea);
+  //   // props.dispatch({
+  //   //   type: "UPDATE-NEW-MESSAGE-TEXT",
+  //   //   textMessage: textFromTextarea,
+  //   // });
+  //   // props.dispatch(updateNewMessageTextActionCreator(textFromTextarea));
+  // };
 
   //test function for Redux form
   let onAddMessageReduxForm = (formData) => {
     // console.log(formData);
-    props.updateNewMessageText(formData.newMessageText);
-    props.addMessage();
+    // props.updateNewMessageText(formData.newMessageText);
+    props.addMessage(formData.newMessageText);
   };
 
   return (
     <div className={styles.dialogsWrapper}>
       <h2 className={styles.title}>Dialogs</h2>
-      {/* fild for new message */}
+      {/* fild for new message
       <label htmlFor="story">New message:</label>
       <br />
       <textarea
@@ -82,7 +82,7 @@ const Dialogs = (props) => {
         // defaultValue="write text..."
       ></textarea>
       <br />
-      <button onClick={onAddMessageFromTextArea}>Add post</button>
+      <button onClick={onAddMessageFromTextArea}>Add post</button> */}
 
       <div>
         <span>text Redux form</span>

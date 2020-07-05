@@ -17,7 +17,7 @@ const MessageForm = (props) => {
 
 const MessageReduxForm = reduxForm({
   // a unique name for the form
-  form: 'newMessage',
+  form: 'dialogNewMessageText',
 })(MessageForm);
 
 export default MessageReduxForm;

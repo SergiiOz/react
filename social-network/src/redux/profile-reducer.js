@@ -11,7 +11,7 @@ const initialState = {
     { id: 3, message: 'So far...', likesCount: 9 },
     { id: 4, message: 'I have done it.', likesCount: 19 },
   ],
-  newPostText: 'default post text',
+  // newPostText: 'default post text',
   profile: null,
   status: '',
 };
@@ -24,9 +24,9 @@ const profilePageReducer = (state = initialState, action) => {
 
   switch (action.type) {
     //   if (action.type === UPDATE_NEW_POST_TEXT) {
-    case UPDATE_NEW_POST_TEXT:
-      //create clone 'state'
-      return { ...state, newPostText: action.newText };
+    // case UPDATE_NEW_POST_TEXT:
+    //create clone 'state'
+    // return { ...state, newPostText: action.newText };
     // break;
     // return state;
     //   }
@@ -37,7 +37,7 @@ const profilePageReducer = (state = initialState, action) => {
       //create new message
       let newMessage = {
         id: 5,
-        message: state.newPostText,
+        message: action.newPostText,
         likesCount: 0,
       };
 
@@ -65,18 +65,19 @@ const profilePageReducer = (state = initialState, action) => {
 };
 
 // ACTION CREATOR
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostText) => {
   return {
     type: ADD_POST,
+    newPostText: newPostText,
   };
 };
 
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-  };
-};
+// export const updateNewPostTextActionCreator = (text) => {
+//   return {
+//     type: UPDATE_NEW_POST_TEXT,
+//     newText: text,
+//   };
+// };
 
 export const setUserProfile = (profile) => {
   return {

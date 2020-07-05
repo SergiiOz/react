@@ -32,7 +32,7 @@ const LoginReduxForm = reduxForm({
 })(LoginForm);
 
 const Login = () => {
-  const onSubmit = (formData) => {
+  const onLogin = (formData) => {
     console.log(formData);
   };
   return (
@@ -40,7 +40,7 @@ const Login = () => {
       <h1>LOGIN PAGE</h1>
       <p>Please auth on server</p>
 
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginReduxForm onSubmit={onLogin} />
     </div>
   );
 };
