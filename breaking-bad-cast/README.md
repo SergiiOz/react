@@ -1,5 +1,5 @@
-The Breaking Bad API is a collection of information on the Vince Gilligan series Breaking Bad, as well as his incredible spin-off Better Call Saul. 
-API created Tim Biles.
+## The Breaking Bad API is a collection of information on the Vince Gilligan series Breaking Bad, as well as his incredible spin-off Better Call Saul. 
+* API created Tim Biles.
 https://breakingbadapi.com/documentation
 
 
