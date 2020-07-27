@@ -6,6 +6,7 @@ import {
   // setAuthUserData,
   // setAuthUserProfile,
   setAuthUserDataThunkCreator,
+  setLogoutUserThunkCreator,
 } from './../../redux/auth-reducer';
 // import { authAPI } from '../../api/api';
 
@@ -61,6 +62,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setAuthUserData: () => {
       dispatch(setAuthUserDataThunkCreator());
+    },
+    setLogout: () => {
+      dispatch(setLogoutUserThunkCreator());
     },
   };
 };

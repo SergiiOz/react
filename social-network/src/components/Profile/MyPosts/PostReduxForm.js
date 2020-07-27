@@ -4,7 +4,7 @@ import {
   requiredField,
   maxLengthCreator,
 } from '../../utils/validators/validators';
-import { Textarea } from '../../common/FormsControls/FormsControls';
+import { TextareaCustom } from '../../common/FormsControls/FormsControls';
 
 const maxLength30 = maxLengthCreator(10);
 
@@ -15,8 +15,8 @@ const TextareaForm = (props) => {
       <div>
         <Field
           name="newPostText"
-          // replacing string 'textarea' with component {Textarea} from components/common/FormsControls
-          component={Textarea}
+          // replacing string 'textarea' with component {TextareaCustom} from components/common/FormsControls
+          component={TextareaCustom}
           validate={[requiredField, maxLength30]}
           placeholder="write text"
         />

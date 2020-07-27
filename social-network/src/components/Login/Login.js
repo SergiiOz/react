@@ -1,5 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { InputCustom } from '../common/FormsControls/FormsControls';
+import { requiredField } from '../utils/validators/validators';
+import { connect } from 'react-redux';
+import { setLoginUserThunkCreator } from '../../redux/auth-reducer';
+import { Redirect } from 'react-router-dom';
 
 const LoginForm = (props) => {
   return (
@@ -10,14 +15,25 @@ const LoginForm = (props) => {
     //*props.onSubmit(formData)
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field placeholder="Login" name="login" component="input" />
+        <Field
+          placeholder="Email"
+          name="email"
+          validate={[requiredField]}
+          component={InputCustom}
+        />
       </div>
       <div>
-        <Field placeholder="Password" name="password" component="input" />
+        <Field
+          placeholder="Password"
+          name="password"
+          type="password"
+          validate={[requiredField]}
+          component={InputCustom}
+        />
       </div>
       <div>
-        <Field type="checkbox" name="rememberMe" component="input" /> remember
-        me
+        <Field type="checkbox" name="rememberMe" component={InputCustom} />{' '}
+        remember me
       </div>
       <div>
         <button type="submit">Login</button>
@@ -31,10 +47,17 @@ const LoginReduxForm = reduxForm({
   form: 'login',
 })(LoginForm);
 
-const Login = () => {
+const Login = (props) => {
   const onLogin = (formData) => {
-    console.log(formData);
+    console.log('login form', formData);
+    props.setLogin(formData.email, formData.password, formData.rememberMe);
   };
+
+  //if we authorized then redirect to page 'Profile'
+  if (props.isAuth) {
+    return <Redirect to="/profile" />;
+  }
+
   return (
     <div>
       <h1>LOGIN PAGE</h1>
@@ -44,5 +67,18 @@ const Login = () => {
     </div>
   );
 };
+let mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
 
-export default Login;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    setLogin: (email, password, rememberMe) => {
+      dispatch(setLoginUserThunkCreator(email, password, rememberMe));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

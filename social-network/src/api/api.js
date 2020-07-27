@@ -71,11 +71,15 @@ export const authAPI = {
     return instanceAxios.get(baseURL + `auth/me`);
   },
 
-  login(email, password, rememberMe) {
+  login(email, password, rememberMe = false) {
     return instanceAxios.post(baseURL + `auth/login`, {
       email: email,
       password: password,
       rememberMe: rememberMe,
     });
+  },
+
+  logout() {
+    return instanceAxios.delete(baseURL + `auth/login`);
   },
 };

@@ -10,7 +10,7 @@ import {
   updateUserSatusThunkCreator,
 } from './../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
-// import withAuthRedirect from '../../hoc/withAuthRedirect';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 // import { profileAPI } from '../../api/api';
 
 class ProfileContainer extends React.Component {
@@ -90,8 +90,8 @@ let mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withRouter
-  // withAuthRedirect
+  withRouter,
+  withAuthRedirect
 )(ProfileContainer);
 
 // export default connect(

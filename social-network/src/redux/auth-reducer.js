@@ -15,9 +15,9 @@ const authReducer = (state = initialState, action) => {
     case SET_AUTH_USER_DATA:
       return {
         ...state,
-        ...action.data,
+        ...action.payload,
         //if we get data then change isAuth to true
-        isAuth: true,
+        // isAuth: true,
       };
     // case SET_AUTH_USER_PROFILE:
     //   return { ...state, profile: action.profile };
@@ -28,10 +28,10 @@ const authReducer = (state = initialState, action) => {
 };
 
 // ACTION CREATOR
-export const setAuthUserData = (userId, email, login) => {
+export const setAuthUserData = (userId, email, login, isAuth) => {
   return {
     type: SET_AUTH_USER_DATA,
-    data: { userId, email, login },
+    payload: { userId, email, login, isAuth },
   };
 };
 
@@ -42,6 +42,7 @@ export const setAuthUserData = (userId, email, login) => {
 //   };
 // };
 
+//THUNK CREATOR
 export const setAuthUserDataThunkCreator = () => {
   return (dispatch) => {
     //we get profile info
@@ -49,7 +50,7 @@ export const setAuthUserDataThunkCreator = () => {
       // console.log(response.data);
       if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data;
-        dispatch(setAuthUserData(id, email, login));
+        dispatch(setAuthUserData(id, email, login, true));
         // this.props.setAuthUserData(
         //   response.data.data.id,
         //   response.data.data.email,
@@ -67,13 +68,20 @@ export const setLoginUserThunkCreator = (email, password, rememberMe) => {
     authAPI.login(email, password, rememberMe).then((response) => {
       console.log(response.data);
       if (response.data.resultCode === 0) {
-        // let { id, email, login } = response.data.data;
-        // dispatch(setAuthUserData(id, email, login));
-        // this.props.setAuthUserData(
-        //   response.data.data.id,
-        //   response.data.data.email,
-        //   response.data.data.login
-        // );
+        dispatch(setAuthUserDataThunkCreator());
+      }
+    });
+  };
+};
+
+//for Logout
+export const setLogoutUserThunkCreator = () => {
+  return (dispatch) => {
+    //we get profile info
+    authAPI.logout().then((response) => {
+      console.log(response.data);
+      if (response.data.resultCode === 0) {
+        dispatch(setAuthUserDataThunkCreator(null, null, null, false));
       }
     });
   };
