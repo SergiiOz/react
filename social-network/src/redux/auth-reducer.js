@@ -1,4 +1,5 @@
 import { authAPI } from './../api/api';
+import { stopSubmit } from 'redux-form';
 export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 export const SET_AUTH_USER_PROFILE = 'SET_AUTH_USER_PROFILE';
 
@@ -69,6 +70,16 @@ export const setLoginUserThunkCreator = (email, password, rememberMe) => {
       console.log(response.data);
       if (response.data.resultCode === 0) {
         dispatch(setAuthUserDataThunkCreator());
+      } else {
+        let message =
+          response.data.messages.length > 0
+            ? response.data.messages[0]
+            : 'Something wrong';
+        dispatch(
+          stopSubmit('login', {
+            _error: message,
+          })
+        );
       }
     });
   };

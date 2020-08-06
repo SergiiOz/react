@@ -5,8 +5,10 @@ import { requiredField } from '../utils/validators/validators';
 import { connect } from 'react-redux';
 import { setLoginUserThunkCreator } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
+import styles from './../common/FormsControls/FormsControls.module.scss';
 
 const LoginForm = (props) => {
+  console.log('loginForm', props);
   return (
     //handleSubmit -> this special callBack, redux-form pass for us to props
     //inside handleSubmit has 3 actions
@@ -35,6 +37,9 @@ const LoginForm = (props) => {
         <Field type="checkbox" name="rememberMe" component={InputCustom} />{' '}
         remember me
       </div>
+      {props.error && (
+        <div className={styles.formSummuryError}>{props.error}</div>
+      )}
       <div>
         <button type="submit">Login</button>
       </div>
