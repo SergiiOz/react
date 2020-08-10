@@ -47,7 +47,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
 export const setAuthUserDataThunkCreator = () => {
   return (dispatch) => {
     //we get profile info
-    authAPI.me().then((response) => {
+    return authAPI.me().then((response) => {
       // console.log(response.data);
       if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data;
