@@ -15,14 +15,16 @@ const UploadForm = () => {
       setErrorMessage(null);
     } else {
       setFile(null);
-      setErrorMessage('Please select an image file (png or jpeg');
+      setErrorMessage('Please select an image file (png or jpeg)');
     }
   };
 
   return (
     <form>
-      <input type="file" onChange={changeHandler} />
-
+      <label>
+        <input type="file" onChange={changeHandler} />
+        <span>+</span>
+      </label>
       <div className="output">
         {errorMessage && <div className="error">{errorMessage}</div>}
         {file && <div>{file.name}</div>}
