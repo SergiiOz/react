@@ -16,7 +16,6 @@ import { initializeAppThunkCreator } from './redux/app-reducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Preloader from './components/common/Preloader/Preloader';
 
 class App extends React.Component {
   componentDidMount() {

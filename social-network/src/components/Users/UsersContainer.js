@@ -4,10 +4,10 @@ import {
   // followAC,
   // unfollowAC,
   // setUsersAC,
-  setCurentPageAC,
   // setTotalUsersCountAC,
   // setToggleIsFetchingAC,
   // toggleFollowInProgressAC,
+  setCurentPageAC,
   getUsersThunkCreator,
   followThunkCreator,
   unFollowThunkCreator,
@@ -15,6 +15,16 @@ import {
 // import * as axios from 'axios';
 import Users from './Users';
 // import { usersAPI } from '../../api/api';
+
+//import selectors for mapStateToProps
+import {
+  getUsersThroughSelector,
+  getPageSizeThroughSelector,
+  getTotalUserCountTroughSelector,
+  getCurrentPageTroughSelector,
+  getIsFetchingTroughSelector,
+  getFollowingInProgressTroughSelector,
+} from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {
   //componentDidMount call once after rendering, then mount data
@@ -91,12 +101,22 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    // users: state.usersPage.users,
+    users: getUsersThroughSelector(state),
+    // pageSize: state.usersPage.pageSize,
+
+    pageSize: getPageSizeThroughSelector(state),
+    // totalUsersCount: state.usersPage.totalUsersCount,
+    totalUsersCount: getTotalUserCountTroughSelector(state),
+
+    // currentPage: state.usersPage.currentPage,
+    currentPage: getCurrentPageTroughSelector(state),
+
+    // isFetching: state.usersPage.isFetching,
+    isFetching: getIsFetchingTroughSelector(state),
+
+    // followingInProgress: state.usersPage.followingInProgress,
+    followingInProgress: getFollowingInProgressTroughSelector(state),
   };
 };
 
