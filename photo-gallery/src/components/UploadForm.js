@@ -9,11 +9,11 @@ const UploadForm = () => {
 
   const changeHandler = (event) => {
     const selectedFile = event.target.files[0];
-    console.log(selectedFile);
+    //console.log(selectedFile);
 
     if (selectedFile && types.includes(selectedFile.type)) {
       setFile(selectedFile);
-      setErrorMessage(null);
+      setErrorMessage('');
     } else {
       setFile(null);
       setErrorMessage('Please select an image file (png or jpeg)');

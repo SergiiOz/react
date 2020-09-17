@@ -17,7 +17,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 //initialize two services
-const projectStorage = firebase.storage();
-const projectFirestore = firebase.firestore();
+const projectStorage = firebase.storage(); //store for our images
+const projectFirestore = firebase.firestore(); //database
+const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { projectStorage, projectFirestore };
+export { projectStorage, projectFirestore, timestamp };
