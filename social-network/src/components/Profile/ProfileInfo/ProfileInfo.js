@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './ProfileInfo.module.scss';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
+// import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
   //if profile === null of undefined
@@ -27,7 +28,7 @@ const ProfileInfo = (props) => {
 
           <p>{props.profile.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
         </div>
-        <ProfileStatus
+        <ProfileStatusWithHooks
           status={props.status}
           updateUserStatus={props.updateUserStatus}
         />
