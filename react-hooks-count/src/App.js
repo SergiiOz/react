@@ -1,55 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react'
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
 
-  const [state, setState] = useState({
-    title: 'The Counter',
-    date: Date.now(),
-  });
+  const [type, setType] = useState('user')
 
-  const addCount = () => {
-    //setCount(count + 1)
-    //setCount(count + 1)
-    //result was only one time added 1
-    //for increase on 2 point, will need to create callback and pass previous counter
-    setCount((prevCounter) => {
-      return prevCounter + 1;
-    });
+  useEffect(() => {
+    console.log('Type changed', type)
+  },[type])
 
-    setCount((prevCounter) => {
-      return prevCounter + 1;
-    });
-  };
+  const onSetUsers = () => {
+    setType('users')
+  }
 
-  const removeCount = () => {
-    setCount(count - 1);
-  };
+  const onSetTodos = () => {
+    setType('todos')
+  }
 
-  const changeTitle = () => {
-    return setState((prev) => {
-      return {
-        ...prev,
-        title: 'New Text',
-      };
-    });
-  };
+  // const onSetPost = () => {
+  //   setType('post')
+  // }
 
   return (
-    <div className="App">
-      <h1>Counter: {count}</h1>
-      <button className="btn btn-success" onClick={addCount}>
-        Add
-      </button>
-      <button className="btn btn-danger" onClick={removeCount}>
-        Remove
-      </button>
-      <button className="btn btn-primary" onClick={changeTitle}>
-        Change Title
-      </button>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
+    <div>
+      <h1>Resurs: {type}</h1>
+      <button className="btn btn-primary" onClick={onSetUsers}>users</button>
+      <button className="btn btn-success" onClick={onSetTodos}>todos</button>
+      <button className="btn btn-danger" onClick={()=>setType('posts')}>posts</button>
     </div>
-  );
+  )
+
 }
 
 export default App;
